@@ -1,0 +1,105 @@
+<!--<div *ngIf="!isDashBoard " class="dropdown">-->
+<!--  <span (click)="filterNavBar()" class="material-icons sort pointer icon leftSide" mat-raised-button-->
+<!--        matTooltip="Filter" matTooltipPosition="above">filter_list_alt</span>-->
+<!--</div>-->
+
+<!--<br>-->
+
+<div class="row">
+  <div *ngIf="showFilter" class="col-sm-3 sidenav">
+    <div>
+      <h4 class="leftSide"><span class="material-icons inline-icon">filter_list</span>Filter</h4>
+      <h4 class="rightSide"><span (click)="filterNavBar()" class="material-icons">close</span></h4>
+    </div>
+    <div *ngIf="isMob">
+      <h4 class="leftSide"><a (click)="clearAll()">Clear All</a></h4>
+      <h4 class="rightPos"><a (click)="filterNavBar()">Done</a></h4>
+    </div>
+    <br>
+    <cdk-accordion class="example-accordion">
+      <cdk-accordion-item
+        #accordionItem="cdkAccordionItem"
+        *ngFor="let item of searchParts; let idx = index;"
+        [attr.aria-controls]="'accordion-body-' + idx"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.id]="'accordion-header-' + idx"
+        class="example-accordion-item"
+        role="button"
+        tabindex="0">
+        <div (click)="accordionItem.toggle()" class="example-accordion-item-header">
+          <span class="material-icons">list</span>{{ item.title }}
+          <span class="example-accordion-item-description">
+           {{item.variations.length}} &nbsp;&nbsp; <i *ngIf="accordionItem.expanded" class='fa fa-chevron-up'></i>
+            <i *ngIf="!accordionItem.expanded" class='fa fa-chevron-down'></i>
+          </span>
+        </div>
+        <div [attr.aria-labelledby]="'accordion-header-' + idx"
+             [attr.id]="'accordion-body-' + idx"
+             [style.display]="accordionItem.expanded ? '' : 'none'"
+             class="example-accordion-item-body"
+             role="region">
+          <ul class="list-group">
+            <div class="form-group">
+              <li *ngFor="let variant of item.variations;let i = index" class="list-group-item variation">
+                <label class="col-form-label"><input (change)="checked($event,variant)" [(ngModel)]="variant.isChecked" class="variationCheck "
+                                                     name="list_name"
+                                                     type="checkbox"/> <span
+                  class="enable pointer">  {{i + 1}} {{variant.title}} &nbsp; &nbsp;<img
+                  [src]="variant.rep_url + '&s=700'" alt="EtherArt" height="60px" width="60px"> </span></label><br>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+    <br>
+  </div>
+  <div *ngIf="isMob && !showFilter">
+    <div class="row">
+      <div *ngFor="let item of checkedVariations; let i = index" [ngClass]="cardClass" style="margin-left: 20px">
+        <span class="selectedVariation">{{item.title}}&nbsp;<sup><span (click)="closeSelectedVariation(item,i)"
+                                                                       class="material-icons inline-icon variationClose">close</span></sup></span>
+      </div>
+      <div [ngClass]="cardClass" style="margin-left: 20px">
+        <span (click)="clearAll()" *ngIf="checkedVariations.length > 0"
+              class="selectedVariation pointer">Clear All</span>
+      </div>
+    </div>
+    <div *ngIf="this.assetList == null" [ngClass]="cardClass">
+      <h4 style="margin-left: 20px">items not available</h4>
+    </div>
+    <!-- <div (scrolled)="scroll()" [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         [ngClass]="cardClass"
+         [scrollWindow]="false"
+         class="scrollList" infiniteScroll> -->
+    <div style="margin-left:15px ; margin-right:15px;" class="row">
+      <div *ngFor="let item of assetList ;  let i = index " [ngClass]="cardItemClass">
+        <app-item [item]="item"></app-item>
+      </div>
+    </div>
+
+    <!-- </div> -->
+
+  </div>
+  <div *ngIf="!isMob">
+    <div *ngFor="let item of checkedVariations; let i = index">
+      <span class="selectedVariation">{{item.title}}&nbsp;<sup><span (click)="closeSelectedVariation(item,i)"
+                                                                     class="material-icons inline-icon variationClose">close</span></sup></span>
+    </div>
+    <span (click)="clearAll()" *ngIf="checkedVariations.length > 0" class="selectedVariation pointer">Clear All</span>
+    <div *ngIf="this.assetList == null" [ngClass]="cardClass">
+      <h4 style="margin-left: 20px">items not available</h4>
+    </div>
+    <div (scrolled)="scroll()" [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         [ngClass]="cardClass"
+         [scrollWindow]="false"
+         class="scrollList" infiniteScroll>
+      <div *ngFor="let item of assetList ;  let i = index " [ngClass]="cardItemClass">
+        <app-item [item]="item"></app-item>
+      </div>
+    </div>
+  </div>
+</div>
+

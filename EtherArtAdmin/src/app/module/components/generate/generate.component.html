@@ -1,0 +1,68 @@
+<div *ngIf="!loading">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card collection">
+                    <div class="card-head">
+                        <h4 class="leftSide titleName" matTooltipPosition="above" mat-raised-button matTooltip="collection name">{{collectionItem.title}}</h4>
+                    </div>
+                    <div class="imgContainer imageBorder">
+                        <img [src]="collectionItem.url+'&s=700'" alt="EtherArt" class="imgCart">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="col-md-6"><br>
+            <form>
+                <div class="form-group form-inline">
+                    <label  class="col-sm-6 col-form-label">Last Generated</label>
+                    <input type="text" class="form-control " [placeholder]="collectionItem.created_date" readonly>
+                </div>
+
+                <div class="form-group form-inline ">
+                    <label  class="col-sm-6 col-form-label">#Item Generated</label>
+                    <input type="text" class="form-control  " readonly [placeholder]="collectionItem.total_collection" >
+                </div>
+
+                <div class="form-group form-inline">
+                    <label  class="col-sm-6  col-form-label">#Total Items</label>
+                    <input type="text" class="form-control  " readonly [placeholder]="collectionItem.total_collection">
+                </div>
+
+                <div class="form-group form-inline">
+                    <label  class="col-sm-6  col-form-label">#Item To Generate</label>
+                    <input type="number" [(ngModel)]="numToGenrate" class="form-control " name="numToGenerate">
+                </div>
+                <br>
+                <div>
+                    <button class="btn btn-ether btn-info generate" [disabled]="generateBtn" (click)="generateCollection()"><i *ngIf="generateBtn" class="fa fa-spinner fa-spin"></i> generate</button>
+                    <button class="btn btn-default btn-ether cancel" routerLink="/view/">cancel</button>
+                </div>
+            </form>
+        </div>
+    </div><br>
+    <h3 style="margin-left: 20px">Generated Collections</h3><br>
+    <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3" *ngFor="let item of genCollectionList">
+        <div  class="card">
+            <div class="card-head">
+                <h4 class="leftSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="item id">{{item.detail_id}}</h4>
+                <i (click)="preview(item)"  matTooltipPosition="above" mat-raised-button matTooltip="preview" class="fa rightSide preview"><span class="material-icons">visibility</span>
+                </i>
+            </div>
+            <div class="imgContainer">
+                <img [src]="item.url+'&s=700'" alt="EtherArt" class="generatedImg">
+            </div>
+            <div class="gen">
+                <div>
+                    <p class="leftSide titleName"><a (click)="traits(item)">Rarity</a></p>
+                    <p *ngIf="item.rarity_percent" class="rightSide titleName">{{item.rarity_percent}}%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" class="spin">
+    <mat-spinner></mat-spinner>
+</div>

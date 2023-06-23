@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="table-responsive scroll">
+        <table class="table table-bordered">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Category</th>
+                    <th>SubCategory Name</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of subCatList;let i = index">
+                    <td>{{i+1}}</td>
+                    <td *ngIf="item.action != 'Read'">
+                        <div class="form-group">
+                            <select (change)="change($event.target.value)" [(ngModel)]="selectedCategory" class="form-control" >
+                                <option *ngFor="let category of categoryList; let i = index" value="{{category.category_id}}" [selected]="category.category_id == selectedCategory" option>{{category.category_name}}</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td *ngIf="item.action == 'Read'">{{item.category_name}}</td>
+                    <td *ngIf="item.action == 'Read'">{{item.sub_category_name}}</td>
+                    <td *ngIf="item.action != 'Read'">
+                        <input class="form-control" type="text" [(ngModel)]="item.sub_category_name"><br>
+                    </td>
+                    <td *ngIf="item.action == 'Read'"><span class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="edit" (click)="actionClicked(item)">edit_note</span></td>
+                    <td *ngIf="item.action != 'Read'"><span *ngIf="item.sub_category_name != '' && selectedCategory != ''" class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="save" (click)="save(item)">save</span></td>
+                    <td *ngIf="item.action == 'Read'"><span class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="delete"(click)="delete(item,i)">delete</span></td>
+                    <td *ngIf="item.action != 'Read'"><span class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="cancel" (click)="cancel(item,i)">cancel</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="material-icons floating-btn" matTooltipPosition="above" mat-raised-button matTooltip="add new subcategory"  (click)="newRow()">add</button>
+</div>

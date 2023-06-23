@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="">
+    <p style="font-size:25px; font-weight: 500"><span style="margin-left:10px;"><span class="material-icons inline-icon" style="font-size: 40px;">person</span> Profile</span>
+    </p>
+  </div>
+  <hr>
+  <div class="profileMargin">
+    <h3>Personal Info</h3>
+    <div class="row">
+      <div class="personalInfo">
+
+        <div class="col-sm-3 col-md-4 col-lg-3">
+          <div class="form-group">
+            <label class="col-form-label" for="fistname">First Name</label>
+            <input [(ngModel)]="userInfo.firstName" [disabled]="!isEditing" class="form-control " id="fistname"
+                   type="text">
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-4 col-lg-3">
+          <div class="form-group">
+            <label class="col-form-label" for="lastname">Last Name</label>
+            <input [(ngModel)]="userInfo.lastName" [disabled]="!isEditing" class="form-control" id="lastname"
+                   type="text">
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-4 col-lg-3">
+          <div class="form-group">
+            <label class="col-form-label" for="year">Year of Birth </label>
+            <select id="year" [(ngModel)]="userInfo.birthYear" [disabled]="!isEditing" class="form-control" style="width: 185px">
+              <option *ngFor="let year of years;let i = index" option>{{year}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3 col-md-4 col-lg-3">
+          <div class="form-group ">
+            <label class="col-form-label" for="gender">Gender</label><br>
+            <span id="gender"><label class="radio-inline">
+          <input (click)="selectMale()" [checked]="male" [disabled]="!isEditing" name="optradio" type="radio"><span
+              class="material-icons icon inline-icon">man</span></label></span>
+            <span style="margin-left: 20px;"> <label class="radio-inline">
+          <input (click)="selectFemale()" [checked]="!male" [disabled]="!isEditing" name="optradio" type="radio"><span
+              class="material-icons icon inline-icon">woman</span>
+        </label></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>Contact</h3>
+    <div class="contact">
+      <div>
+        <label class="col-form-label" for="email">Email</label>
+        <div class="form-group">
+          <input (change)="emailValidation()" [(ngModel)]="userInfo.email" [disabled]="!isEditing" class="form-control"
+                 id="email" id="email"
+                 type="text">
+        </div>
+      </div>
+      <br>
+      <div>
+        <div class="form-group">
+          <input (click)="showInput()" [checked]="checkWhatsApp" [disabled]="!isEditing" id="enable" type="checkbox">
+          <label class="col-form-label enable" for="enable">Enable WhatsApp Notification</label>
+        </div>
+        <div class="form-group" style="display: inline-flex">
+          <div *ngIf="checkWhatsApp" [disabled]="!isEditing" class="">
+            <form #f="ngForm" [formGroup]="phoneForm">
+              <ngx-intl-tel-input
+                [(ngModel)]="whatsAppNum"
+                [cssClass]="'custom'"
+                [customPlaceholder]="whatsAppNum"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [maxLength]="maxLength"
+                [numberFormat]="PhoneNumberFormat.National"
+                [phoneValidation]="true"
+                [preferredCountries]="preferredCountries"
+                [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                [searchCountryFlag]="true"
+                [selectFirstCountry]="false"
+                [selectedCountryISO]="countryiso"
+                [separateDialCode]="separateDialCode"
+                formControlName="phone" name="phone">
+              </ngx-intl-tel-input>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="userInfo.country_dial_code=='91'">
+      <hr>
+      <h3>Location</h3>
+      <div class="row">
+        <div class="location">
+          <div class="col-sm-3 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label class="col-form-label" for="state">State</label>
+              <select (ngModelChange)="onChangeState($event)" [(ngModel)]="userInfo.state" [disabled]="!isEditing"
+                      class="form-control"
+                      id="state" style="width: 185px">
+                <option *ngFor="let sItem of state;  let i = index" [ngValue]="sItem.state_id">{{sItem.state_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label class="col-form-label" for="city">City</label>
+              <select (ngModelChange)="onChangeCity($event)" [(ngModel)]="userInfo.city" [disabled]="!isEditing"
+                      class="form-control"
+                      id="city" style="width: 185px">
+                <option *ngFor="let city of sCity;  let i = index" [ngValue]="city.city_id">{{city.city_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-4 col-lg-3">
+            <div class="form-group">
+              <label class="col-form-label" for="pincode">Pin Code</label>
+              <input [(ngModel)]="userInfo.pinCode" [disabled]="!isEditing" class="form-control" id="pincode"
+                     type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button (click)="editClicked()" *ngIf="isEditing" class="material-icons floating-btn" mat-raised-button
+        matTooltip="Save" matTooltipPosition="above">save
+</button>
+<button (click)="editClicked()" *ngIf="!isEditing" class="material-icons floating-btn" mat-raised-button
+        matTooltip="Edit" matTooltipPosition="above">edit_note
+</button>

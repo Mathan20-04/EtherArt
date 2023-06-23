@@ -1,0 +1,35 @@
+
+ <div *ngIf="isLoaded"  class="row collection">
+    <div class="col-sm-3" *ngFor="let obj of uiControl">
+        <div class="form-group form-inline">
+            <label>{{obj.label}}</label><br>
+            <input *ngIf="obj.type == 'DATE_PICKER'" [(ngModel)]="obj.model" type="date" class="form-control" style="width: 300px;">
+            <select *ngIf="obj.type == 'DROPDOWN'" [(ngModel)]="obj.model" (change)="onChange(obj, $event.target.value)" class="form-control" id="category" style="width: 300px;">
+                <option  *ngFor="let item of obj.list" value="{{item.id}}" >{{item.value}}</option>
+            </select>
+            <input *ngIf="obj.type == 'TEXT'" [(ngModel)]="obj.model" type="text" class="form-control" style="width: 300px;">
+        </div>
+    </div>
+    <button class="btn btn-info getBtn" (click)="showReport()">Get</button>     
+</div><br>
+
+<div *ngIf="showreport" class="margin">
+    <div class="table-responsive  salesreport">
+        <table class="table table-bordered">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+                <tr>
+                    <th>Sl. No</th>
+                    <th *ngFor="let item of columns" class="alignCenter">{{item.Name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of reportData.data;let i = index">
+                    <td>{{i+1}}</td>
+                    <td *ngFor="let col of columns" [class]="align(col)">
+                        {{item[col.Key]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

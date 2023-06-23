@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="table-responsive scroll">
+        <table #scrollMe class="table table-bordered">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+            <tr>
+                <th>Sl.No</th>
+                <th>Category Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of categoryList ; let i = index">
+                <td>{{i + 1}}</td>
+                <td *ngIf="item.action == 'Read'">{{item.category_name}}</td>
+                <td *ngIf="item.action == 'Edit'">
+                    <input [(ngModel)]="categoryName" class="form-control" id="{{item.category_id}}" name="{{item.category_name}}"
+                           type="text">
+                </td>
+                <td *ngIf="item.action == 'Read'"><span (click)="actionClicked(item)" class="material-icons pointer"
+                                                        matTooltipPosition="above" mat-raised-button matTooltip="edit">edit_note</span></td>
+                <td *ngIf="item.action != 'Read'"><span *ngIf="categoryName != ''" (click)="save(item)" class="material-icons pointer"
+                                                        matTooltipPosition="above" mat-raised-button matTooltip="save">save</span></td>
+                <td *ngIf="item.action == 'Read'"><span (click)="delete(item,i)" class="material-icons pointer"
+                                                        matTooltipPosition="above" mat-raised-button matTooltip="delete">delete</span></td>
+                <td *ngIf="item.action != 'Read'"><span (click)="cancel(item,i)" class="material-icons pointer" data-toggle="tooltip" title="cancel">cancel</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button (click)="newRow()" class="material-icons floating-btn" matTooltipPosition="above" mat-raised-button matTooltip="add new category">add
+    </button>
+</div>

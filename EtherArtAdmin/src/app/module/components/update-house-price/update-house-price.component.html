@@ -1,0 +1,116 @@
+<h3 class="alignCenter">Update House Price</h3>
+<div class="row" style="margin: 0">
+    <div class="col-sm-4">
+        <h3 style="margin-left:20px">Price</h3>
+        <div class="chart-container">
+            <canvas height="150px" id="priceChart"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <h3 style="margin-left:20px">Volume</h3>
+        <div class="chart-container">
+            <canvas height="150px" id="volumeChart"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="table-responsive" style="overflow-y: scroll;height: 40vh;">
+            <table #scrollMe class="table table-hover">
+                <thead style="position: sticky;top: 0;z-index: 1;">
+                <tr>
+                    <th>#Week</th>
+                    <th>Base Price</th>
+                    <th>#Sales</th>
+                    <th>Average Secondary Price</th>
+                    <th>#secondary sale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>500</td>
+                    <td>5</td>
+                    <td>400</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>525</td>
+                    <td>5</td>
+                    <td>330</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>550</td>
+                    <td>5</td>
+                    <td>600</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>575</td>
+                    <td>1</td>
+                    <td>430</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>600</td>
+                    <td>5</td>
+                    <td>500</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>625</td>
+                    <td>2</td>
+                    <td>430</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>650</td>
+                    <td>5</td>
+                    <td>430</td>
+                    <td>3</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+<div class="marginLR">
+    <h3>Update Pricing:</h3>
+    <div class="row collection">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="col-form-label" for="from">From</label>
+                <input class="form-control" id="from" type="date">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="col-form-label" for="to">To</label>
+                <input class="form-control" id="to" type="date">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="col-form-label" for="price">Price</label>
+                <input class="form-control" id="price" placeholder="599" readonly type="text">
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="col-form-label" for="newPrice">New Price</label>
+                <input class="form-control" id="newPrice" type="text">
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="form-group"><br>
+                <button class="btn btn-success btn-lg" style="font-size: 15px;">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+<div class="row marginZero">
+  <div class="col-sm-4 col-md-4 col-lg-4 col-xd-12">
+    <div class="card">
+      <div class="card-head">
+        <h4 class="leftSide titleName" mat-raised-button matTooltip="Item Id" matTooltipPosition="above">{{itemid}}</h4>
+        <h4 class="rightSide titleName"></h4>
+      </div>
+      <div class="imagecontainer">
+        <img *ngIf="!isMob" [src]="url" alt="EtherArt" class="imgCart">
+        <img *ngIf="isMob" [src]="url" alt="EtherArt" class="mobImage">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 col-lg-8 col-md-8 col-xs-12"><br>
+    <div class="content">
+      <div class="row marginZero">
+        <div class="col-sm-6">
+          <div *ngIf="url!='assets/mystery.png'" class="form-group">
+            <div class="row">
+              <label class="leftSide" for="productInfo">Item #</label>
+              <span class="rightSide">
+                 <input [(ngModel)]="itemid" class="form-control" id="productInfo" name="productinfo"
+                        readonly type="text">
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide" for="price">Price in INR</label>
+              <span class="rightSide">
+                   <input [(ngModel)]="itemPrice" class="form-control" id="price" name="price" readonly type="text">
+                </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div *ngIf="user.country_dial_code == 91" class="row">
+              <label class="leftSide" for="balance" mat-raised-button matTooltip="Reward points converted to INR that you have in your wallet"
+                     matTooltipPosition="above">Cash Available in INR <sup>?</sup></label>
+              <span class="rightSide">
+                  <input [(ngModel)]="balance" class="form-control" id="balance" name="balance" readonly type="text">
+                </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div *ngIf="user.country_dial_code == 91" class="row">
+              <label class="leftSide" for="maxDeduction" mat-raised-button matTooltip="Reward points converted to INR that you can utilize to buy the item"
+                     matTooltipPosition="above">Cash Redeemable in INR <sup>?</sup></label>
+              <span class="rightSide">
+                  <input [(ngModel)]="maxDeduction" class="form-control" id="maxDeduction" name="maxDeduction"
+                         readonly type="text">
+                </span>
+            </div>
+          </div>
+          <div *ngIf="user.country_dial_code != 91">
+            <div class="form-group">
+              <div class="row">
+                <label class="leftSide" for="gst">Service Charge in INR</label>
+                <span class="rightSide">
+                  <input [(ngModel)]="serviceCharge" class="form-control" id="gst" name="gst" readonly
+                         type="number">
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide" for="itemPrice">Amount in INR</label>
+              <span class="rightSide">
+                  <input [(ngModel)]="netPrice" class="form-control" id="itemPrice" name="itemPrice" readonly
+                         type="number">
+                </span>
+            </div>
+          </div>
+          <div *ngIf="!usd">
+            <div class="form-group">
+              <div class="row">
+                <label class="leftSide" for="gst">GST {{taxpercent}}% in INR</label>
+                <span class="rightSide">
+                  <input [(ngModel)]="taxamount" class="form-control" id="gst" name="gst" readonly
+                         type="number">
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <label class="leftSide" for="totamount">Total Amount in INR</label>
+                <span class="rightSide">
+                  <input [(ngModel)]="checkoutForm.amount" class="form-control" id="totamount" name="totamount"
+                         readonly type="number">
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide required-field" for="firstname">Name</label>
+              <span class="rightSide">
+                <input [disabled]="disable" [(ngModel)]="checkoutForm.firstname" class="form-control" id="firstname" name="firstname"
+                       type="text">
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide required-field" for="email">Email</label>
+              <span class="rightSide">
+                  <input [disabled]="disable" [(ngModel)]="checkoutForm.email" class="form-control" id="email" name="email" type="email">
+                </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide required-field" for="phone">Phone</label>
+              <span class="rightSide">
+                   <input [disabled]="disable" [(ngModel)]="checkoutForm.phone" class="form-control" id="phone" name="phone" type="number">
+                </span>
+            </div>
+            <br>
+            <div class="form-group">
+              <input [checked]="" type="checkbox" id="print">
+              <label class="col-form-label enable pointer" for="print">Print on T-Shirt &nbsp; Additional Rs.200/-</label><br>
+              <div class="row">
+                <div class="col-lg-2 col-sm-2">
+                  <label class="col-form-label  pointer">Color</label>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="white"/>
+                    <label for="white" style="background-color: white;border-color:grey;"></label>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox"  id="skyblue"/>
+                    <label for="skyblue" style="background-color: skyblue;border-color:grey;"></label>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="lightyellow"/>
+                    <label for="lightyellow" style="background-color: lightyellow;border-color:grey;"></label>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="lightgreen"/>
+                    <label for="lightgreen" style="background-color: lightgreen;border-color:grey;"></label>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-2 col-lg-2">
+                  <label class="col-form-label">Size</label>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="s" />
+                    <label for="s" style="background-color: #f4f4f4;border-color:grey;color: black">&nbsp; S</label>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="m" />
+                    <label for="m" style="background-color: #f4f4f4;border-color:grey;color: black">&nbsp; M</label>
+                  </div>
+                </div>
+                <div class="col-sm-2 col-lg-2">
+                  <div class="round">
+                    <input type="checkbox" id="l" />
+                    <label for="l" style="background-color: #f4f4f4;border-color:grey;color:black;;">&nbsp; L</label>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-lg-3">
+                  <div class="round">
+                    <input type="checkbox" id="x-l" />
+                    <label for="x-l" style="background-color: #f4f4f4;border-color:grey;color: black">&nbsp;XL</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <label class="leftSide">Pay in</label>
+                <span class="rightSide" style="margin-right: 20px">
+                    <span>
+                      <label *ngIf="user.country_dial_code == 91" class="radio-inline" for="inr"><input [disabled]="disable" (click)="selectINR()" [checked]="!usd" id="inr"
+                                                                   name="inr"
+                                                                   type="radio">INR</label>
+                    </span>
+                    <span style="margin-left: 20px;">
+                      <label class="radio-inline" for="usd"><input [disabled]="disable" (click)="selectUSD()" [checked]="usd" id="usd"
+                                                                   name="usd"
+                                                                   type="radio">USD</label>
+                    </span>
+                </span>
+              </div>
+            </div>
+
+            <button (click)="checkOut()" *ngIf="isAvailable && showConfirmButon && isAvailable" class="btn  rightPos"
+                    type="button">Checkout
+            </button>
+            <button *ngIf="isAvailable && !showConfirmButon && disablePaymentButton" class="buttonload btn rightSide">
+              <i class="fa fa-spinner fa-spin"></i> Loading
+            </button>
+            <p *ngIf="isMob"><br><br></p>
+            <br>
+
+            <label *ngIf="!isAvailable" class="rightSide">
+              Someone already buying this item! Please choose different <a routerLink="/dashboard"> NFT</a> .
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <p class="leftPos"></p>
+    <span (click)="close()" class="material-icons icon rightPos" matTooltipPosition="above" mat-raised-button matTooltip="Close">close</span>
+  </div>
+  <div>
+    <div *ngIf="showSignUp">
+      <app-initsignup (loginSignal)="makeLoginVisible($event)"></app-initsignup>
+    </div>
+    <div *ngIf="showLogin">
+      <app-login (loggedIn)="makeinitSignUpVisible($event)"></app-login>
+    </div>
+  </div>
+</div>
+

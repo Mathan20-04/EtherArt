@@ -1,0 +1,29 @@
+<div class="row refer">
+  <br>
+  <!-- <h4 *ngIf="!isMob" style="font-size: 21px;font-weight: 500;text-align: left;color: white">Hey, there is more this month</h4>
+  <h4 *ngIf="isMob" style="font-size: 21px;font-weight: 500;text-align: left;color: white">Hey, there is more this month</h4> -->
+  <h2 *ngIf="!isMob" style="font-size: 24px;font-weight: 500;text-align: left;color: white">{{welcomeMsg}}</h2>
+  <h2 *ngIf="isMob" style="font-size: 24px;font-weight: 500;text-align: left;color: white">{{welcomeMsg}}</h2>
+
+  <h3 style="font-size: 24px;font-weight: 400;text-align: left; line-height: 1.5;color: white"> Refer friends to earn 50 Tribe Rewards.</h3>
+  <!-- <ul style="list-style: none"> -->
+    <!-- <li> -->
+      <h2 style="font-size: 24px;font-weight: 400;text-align: left; line-height: 1.5;color: white">Your current Reward balance is {{balance}}. </h2>
+    <!-- </li> -->
+    <!-- <li><h3 style="font-size: 19px;font-weight: 400;text-align: left; line-height: 1.5;color: white">Eligible to get a rare NFT of Hanuman when released for free!</h3></li> -->
+  <!-- </ul> -->
+  <h3 style="font-size: 24px;font-weight: 400;text-align: left; line-height: 1.5;color: white"> Invite your friends.</h3>
+  <div style="text-align:left">
+    <a *ngIf="!isMob" href="https://web.whatsapp.com/send?text={{urlReferral}}" target="_blank">
+      <img src="assets\whatsapp.svg"  class="leftSide"  matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share"  alt="" width="40" height="40" id="share">
+    </a>
+    <a *ngIf="isMob" [href]="shareOnWhatsappApp" data-text="Share on Whatsapp App" target="_blank" class="wa_btn wa_btn_s" >
+      <img src="assets\whatsapp.svg" class="leftSide" matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share" width="40" height="40" alt="" id="wshare">
+    </a>
+    <a data-text="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text={{urlReferral}}">
+      <img src="assets/iconsTwitter.svg" matTooltipPosition="above" mat-raised-button matTooltip="Twitter Share" alt="twitter" class="leftSide" width="40" height="40">
+    </a>
+    <a><img src="assets/copylink.png" [cdkCopyToClipboard]="urlReferral" matTooltipPosition="above" mat-raised-button matTooltip="Copy Link" (click)="copyLink()" class="leftSide" width="40" height="40"></a>
+  </div>
+  <br>
+</div>

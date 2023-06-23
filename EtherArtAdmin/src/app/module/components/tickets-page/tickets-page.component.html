@@ -1,0 +1,149 @@
+<div class="dropdown">
+    <span class="material-icons sort pointer icon leftSide" (click)="filterOpen()">filter_list_alt</span>
+</div>
+
+<div *ngIf="isfilterOpen" class="row collection">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="from">From</label>
+            <input type="text" class="form-control" id="from" style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="to">To</label>
+            <input type="text" class="form-control" id="to"  style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="type">Type</label>
+            <select class="form-control" id="type"  style="height: 44px">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="subtype">SubType</label>
+            <select class="form-control" id="subtype"  style="height: 44px">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="phone">Mobile</label>
+            <form #f="ngForm" [formGroup]="phoneForm" id="phone">
+                <ngx-intl-tel-input
+                        [cssClass]="'custom'"
+                        [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="countryiso"
+                        [maxLength]="maxLength"
+                        [phoneValidation]="true"
+                        [separateDialCode]="separateDialCode"
+                        [numberFormat]="PhoneNumberFormat.National"
+                        [customPlaceholder]="phoneNum"
+                        name="phone"
+                        formControlName="phone" [(ngModel)]="phoneNum"
+                >
+                </ngx-intl-tel-input>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="email">Email</label>
+            <input type="email" class="form-control" id="email"  style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="itemnum">Item Number</label>
+            <input type="number" class="form-control" id="itemnum" style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="assignedto">Assigned To</label>
+            <select class="form-control" id="assignedto"  style="height: 44px">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+    </div>
+</div>
+<h3 style="margin-left:20px">Dashboard</h3>
+<div class="row" style="margin: 0">
+    <div class="col-sm-4">
+        <div  class="chart-container">
+            <canvas height="150px" id="canvas"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div  class="chart-container">
+            <canvas height="150px" id="typeChart"></canvas>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div style="margin-left: 20px;margin-right: 20px;">
+            <div class="table-responsive" style="overflow-y: scroll;height:211px;">
+                <table #scrollMe class="table">
+                    <thead style="position: sticky;top: 0;z-index: 1;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="marginLR">
+    <h3>Tickets</h3>
+    <div class="table-responsive myticketTable">
+        <table #scrollMe class="table">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of ticketList ;let i = index" class="pointer ticket" (click)="openViewTicket(ticket)">
+                <td>{{ticket.ticket_id}}</td>
+                <td>{{showDateYYYY(ticket.created_on,'-')}}</td>
+                <td>{{showTicketType(ticket)}}</td>
+                <td>{{ticket.ticket_description}}</td>
+                <td >{{ticket.status}}</td>
+                <td class="pointer alignCenter"><a (click)="openAddComment(ticket)"><span class="material-icons inline-icon">turn_left</span>Add comment</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>

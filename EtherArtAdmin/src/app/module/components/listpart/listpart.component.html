@@ -1,0 +1,28 @@
+<div class="row collection" style="height: 78vh;position:relative;">
+    <div style="max-height:100%;overflow-y:auto;">
+        <div class="card" [ngStyle]="{'border': (selectedPartId==item.part_id) ? '2px solid #00a2ed' : ''}"  *ngFor="let item of partList ;  let i = index" style="margin: 20px;">
+            <div class="card-head">
+                <h6 class="leftSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="part name">{{item.title}}</h6>
+                <h6 class="rightSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="created on">{{item.created_date}}</h6>
+            </div>
+            <div class="imagecontainer">
+                <img [src]="item.url+'&s=700'" alt="EtherArt" style="width: 100%;" (click)="onImageClick(item)" (dblclick)="onImageDblClick(item)">
+            </div>
+            <div class="card-body">
+                <div>
+                    <p class="leftSide titleName">Variants</p>
+                    <p class="rightSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="num of variation">{{item.numvariants}}</p>
+                </div>
+                <div>
+                    <p class="leftSide titleName">Category</p>
+                    <p class="rightSide titleName">{{item.category_id}}</p>
+                </div>
+                <div>
+                    <p class="leftSide titleName">Metadata</p>
+                    <p class="rightSide titleName">{{item.metadata.length}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="material-icons btn-info add-btn"  matTooltipPosition="above" mat-raised-button matTooltip="add new part" (click)="addNew()">add</button>

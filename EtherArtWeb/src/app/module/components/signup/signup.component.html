@@ -1,0 +1,62 @@
+<div class="row marginZero">
+  <div class="col-sm-8">
+    <img *ngIf="!isMob" src="assets\signupBannerPc.png" alt="etherart" width="100%">
+    <img *ngIf="isMob" src="assets\beforeloginmob.png" alt="etherart" width="100%">
+  </div>
+  <div class="col-sm-4" style="display: flex;align-items: center;justify-content: center;">
+    <form class="form"><br>
+      <div class="form-group" >
+        <input type="text" class="form-control" [(ngModel)]="data.fName" name="fname" placeholder="First Name"   style="width:311px;height: 44px;">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="data.lName" name="lname" placeholder="Last Name"   style="width:311px;height: 44px;">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" [(ngModel)]="data.email" name="email" placeholder="Email"   style="width:311px;height: 44px;">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" [(ngModel)]="data.password"  id="pwd" name="password" placeholder="Password"   style="width:311px;height: 44px;">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" [(ngModel)]="data.rPassword" id="rpwd" name="rpass" placeholder="Re Enter Password"   style="width:311px;height: 44px;">
+      </div>
+      <form #f="ngForm" [formGroup]="phoneForm" >
+        <ngx-intl-tel-input
+          [cssClass]="'custom'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="CountryISO.India"
+          [maxLength]="maxLength"
+          [phoneValidation]="true"
+          [separateDialCode]="separateDialCode"
+          [numberFormat]="PhoneNumberFormat.National"
+          name="phone"
+          formControlName="phone"
+        >
+        </ngx-intl-tel-input>
+      </form>
+      <br>
+      <div [hidden]="true" class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="data.invitationCode" name="code" placeholder="Referal Code"   style="width:311px;height: 44px;" readonly >
+      </div>
+      <div *ngIf="isOTP" class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="data.otp" name="otp" placeholder="OTP"  style="width:311px;height: 44px;">
+      </div><br>
+      <div class="form-group">
+        <p class="leftPos">Already have an Account? <a style="text-decoration: none;font-size: small; cursor:pointer;"   routerLink="/dashboard">SignIn</a></p>
+        <button *ngIf="!isOTP" class="btn rightPos" [disabled]="sendOTPBtnDisable" (click)="sendOTP()">Send OTP</button>
+        <button *ngIf="isOTP" class="btn rightPos" [disabled]="signUpBtnDisable" (click)="signUp()">Sign Up</button>
+      </div>
+      <div *ngIf="isOTP" class="form-group" class="alignCenter">
+        <button class="btn btn-link" (click)="sendOTP()" [disabled]="enable" style="border:none ; background-color: white; color: skyblue;">Resend OTP</button>
+      </div>
+      <p *ngIf="isMob"><br></p>
+    </form>
+  </div>
+</div>
+
+

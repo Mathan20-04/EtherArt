@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-head">
+    <h6  class="leftSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="Item Id - Owner">{{cartTitle}}</h6>
+    <img  class="leftSide tagIcon" [src]="iconsrc" width="50px" height="50px">
+    <h6  class="rightSide titleName likeText">{{like}}</h6>
+    <i  matTooltipPosition="above" mat-raised-button matTooltip="Favorite" (click)="likeClicked()" class="fa rightSide heartLike"><span class="material-icons">{{likeIcon}}</span>
+    </i>
+    <div  class="rightPos dropdown">
+      <a class="dropdown-toggle pointer" data-toggle="dropdown">
+        <img src="assets/share.svg" class="rightSide dropdown-toggle shareIcon" matTooltipPosition="above" mat-raised-button matTooltip="Share">
+      </a>
+      <ul class="dropdown-menu alignCenter" style="min-width: 50px !important;">
+        <li>
+          <a *ngIf="!isMob" href="https://web.whatsapp.com/send?text={{urlReferral}}" target="_blank">
+            <img  src="assets/whatsapp.svg" matTooltipPosition="above" mat-raised-button matTooltip="Whatsapp Share" style="width:22px;height:22px">
+          </a>
+        </li>
+        <li>
+          <a *ngIf="isMob" [href]="shareOnWhatsappApp" data-text="Share on Whatsapp App" target="_blank" class="wa_btn wa_btn_s" >
+            <img  src="assets/whatsapp.svg" matTooltipPosition="above" mat-raised-button matTooltip="Whatsapp Share" style="width:22px;height:22px">
+          </a>
+        </li>
+        <li>
+          <a data-text="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text={{urlReferral}}">
+            <img src="assets/iconsTwitter.svg" matTooltipPosition="above" mat-raised-button matTooltip="Twitter Share" alt="twitter" style="width:22px;height:22px">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <p class="rightSide"  matTooltipPosition="above" mat-raised-button matTooltip="Etherscan is a block explorer and analytics platform that allows you to access details on any Ethereum blockchain transactions that are pending or confirmed">
+      <a [href]="urlAuthenticity" target="_blank">
+        <img  src="assets/etherscan.svg" class="etherScan" width="18px" height="18px">
+      </a>
+    </p>
+    <p class="rightSide"  matTooltipPosition="above" mat-raised-button matTooltip="Download Image"  style="margin-top: 4px;">
+      <a (click)="openDownloadImage()">
+        <span class="material-icons">download_for_offline</span>
+      </a>
+    </p>
+  </div>
+  <div class="imagecontainer">
+    <img [src]="url" alt="EtherArt" style="width: 100%;" (click)="showDetail()">
+  </div>
+  <div class="card-body">
+    <div>
+<!--      <p class="leftSide titleName" matTooltipPosition="above" mat-raised-button matTooltip=" NFT rarity determines how rare and valuable an NFT is.NFT rarity originated from the traits found in the Crypto-Punks collection"><a (click)="traits(item)">Rarity</a></p>-->
+<!--      <p class="rightSide titleName">{{rarity_per}}%</p>-->
+      <p class="leftSide" style="font-size: 13px"><a (click)="traits(item)">Check uniqueness</a></p>
+    </div>
+    <div *ngIf="showBid">
+      <p  class="leftSide titleName"><span class="material-icons gavel">gavel</span> Highest Bid</p>
+      <p *ngIf="bidObj != null && bidObj.isMine == 1" class="leftSide titleName">{{bidPrice}}</p>
+      <p *ngIf="bidObj != null && bidObj.isMine == 1 && isBidMore == true" (click)="bidMore()" class="rightSide titleName"><a>Bid More</a></p>
+      <p *ngIf="bidObj != null && bidObj.isMine == 1 && isBidMore == false" class="rightSide titleName">Your Bid {{bidObj.amnt}}</p>
+      <a *ngIf="((bidObj != null && bidObj.isMine == 0) || bidObj == null)" (click)="bidClicked()" class="rightSide buy titleName"> <i *ngIf="bidNow" class="fa fa-spinner fa-spin"></i> Bid Now</a>
+      <input *ngIf=" ((bidObj != null && bidObj.isMine == 0) || bidObj == null)"  type="number" style="width:65px ; height:20px; border:none" id="bidprice" class="input-sm form-control rightSide" name="bidprice" [(ngModel)]="bidPrice">
+      <a *ngIf="bidObj != null && bidObj.isMine == 1 && isBidMore == true" (click)="bidClicked()" class="rightSide buy titleName"><i *ngIf="bidNow" class="fa fa-spinner fa-spin"></i> Bid Now</a>
+      <input *ngIf="bidObj != null && bidObj.isMine == 1 && isBidMore == true"  type="number" style="width:65px ; height:20px; border:none" id="bid" class="input-sm form-control rightSide" name="bid" [(ngModel)]="bidPrice">
+    </div>
+    <div >
+      <a *ngIf="showBuy" (click)="buyClicked()" matTooltipPosition="above" mat-raised-button matTooltip="Price exclusive of taxes" class="rightSide fontsmall"><i *ngIf="buyBtn" class="fa fa-spinner fa-spin"></i>Buy Now &#8377;{{priceToShow}}</a>
+    </div>
+    <!-- <div >
+      <h6 class="leftSide">All Purchases are made in INR or USD.</h6><br>
+    </div>
+    <div  class="alignCenter">
+      <a *ngIf="showBuy" (click)="buyClicked()" matTooltipPosition="above" mat-raised-button matTooltip="Price exclusive of taxes"  style="font-size: 20px"><i *ngIf="buyBtn" class="fa fa-spinner fa-spin"></i>Buy Now &#8377;{{priceToShow}}</a>
+    </div> -->
+  </div>
+</div>
+

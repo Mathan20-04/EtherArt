@@ -1,0 +1,120 @@
+<div class="main">
+  <div *ngIf="item != null" class="row detail">
+    <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
+      <div  class="card">
+        <div class="card-head">
+          <h4 class="leftSide titleName" matTooltipPosition="above" mat-raised-button matTooltip="Item Id">{{itemid}}</h4>
+          <h6 class="rightSide titleName likeText" >{{like}}</h6>
+          <i (click)="likeClicked()"  matTooltipPosition="above" mat-raised-button matTooltip="Favorite" class="fa rightSide heartLike"><span class="material-icons">{{likeIcon}}</span>
+          </i>
+          <div  class="rightPos dropdown">
+            <a class="dropdown-toggle pointer" data-toggle="dropdown">
+              <img src="assets/share.svg" class="rightSide dropdown-toggle shareIcon" matTooltipPosition="above" mat-raised-button matTooltip="Share">
+            </a>
+            <ul class="dropdown-menu alignCenter" style="min-width: 50px !important;">
+              <li>
+                <a *ngIf="!isMob" href="https://web.whatsapp.com/send?text={{urlReferral}}" target="_blank">
+                  <img  src="assets/whatsapp.svg" matTooltipPosition="above" mat-raised-button matTooltip="Whatsapp Share" style="width:22px;height:22px">
+                </a>
+              </li>
+              <li>
+                <a *ngIf="isMob" [href]="shareOnWhatsappApp" data-text="Share on Whatsapp App" target="_blank" class="wa_btn wa_btn_s" >
+                  <img  src="assets/whatsapp.svg" matTooltipPosition="above" mat-raised-button matTooltip="Whatsapp Share" style="width:22px;height:22px">
+                </a>
+              </li>
+              <li>
+                <a data-text="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text={{urlReferral}}">
+                  <img src="assets/iconsTwitter.svg" matTooltipPosition="above" mat-raised-button matTooltip="Twitter Share" alt="twitter" style="width:22px;height:22px">
+                </a>
+              </li>
+            </ul>
+          </div>
+          <p class="rightSide"  matTooltipPosition="above" mat-raised-button matTooltip="Etherscan is a block explorer and analytics platform that allows you to access details on any Ethereum blockchain transactions that are pending or confirmed">
+            <a [href]="urlAuthenticity" target="_blank">
+              <img  src="assets/etherscan.svg" class="etherScan" width="18px" height="18px">
+            </a>
+          </p>
+          <i *ngIf="this.item.url != 'assets/mystery.png'" (click)="preview(item)"   matTooltipPosition="above" mat-raised-button matTooltip="Preview" class="fa rightSide preview"><span class="material-icons">visibility</span>
+          </i>
+        </div>
+        <div *ngIf="isMob" class="imagecontainer">
+          <img [src]="url" alt="EtherArt" class="mobImage">
+        </div>
+        <div *ngIf="!isMob" class="imagecontainer" (mousemove)="onMove()" (mouseout)="onMouseOut()">
+          <ng-img-magnifier [thumbImage]='url' [fullImage]='item.url'
+                            [lensWidth]='50' [lensHeight]='50'
+                            [resultWidth]='100' [resultHeight]='100'
+                            [top]='0' [right]='-120'
+                            [imgWidth]="387" [imgHeight]='376'>
+          </ng-img-magnifier>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!bIsShowing" class="col-sm-6 col-md-6 col-lg-8 col-xs-12"><br>
+      <!-- <p  matTooltipPosition="above" mat-raised-button matTooltip="Etherscan is a block explorer and analytics platform that allows you to access details on any Ethereum blockchain transactions that are pending or confirmed"> <a [href]="urlAuthenticity"  class="leftPos detailName" target="_blank">
+        <img src="assets/etherscan.svg"width="30px" height="30px">EtherScan</a>
+      </p> -->
+      <p class="detailName"><label>Collection </label> : {{collection_name}}</p>
+      <p *ngIf="this.item.url != 'assets/mystery.png'" class="detailName"><label>Item No</label> : {{itemid}}</p>
+      <p *ngIf="this.item.url != 'assets/mystery.png'" class="detailName"><label>Owned By</label> : {{owner}}</p>
+      <p *ngIf="!showBid" class="detailName"><label>Price</label> :  &#8377;{{priceToShow}}</p>
+      <p *ngIf="showBid && this.item.url != 'assets/mystery.png'" class="detailName"><label >Highest Bid</label> : </p>
+      <div *ngIf="showBid && this.item.url != 'assets/mystery.png'">
+        <div class="form-group" style="float: left;">
+          <input [(ngModel)]="bidPrice" type="number" class="form-control" style="width: 130px; margin-left: 10px" id="">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-ether" style="margin-left: 10px" (click)="bidClicked()" [disabled]="bidNow">Bid Now</button>
+        </div>
+      </div>
+      <div *ngIf="showBuy && owner != 'Me'">
+        <span [disable]="buyBtnDisable" class="rightSide"><button class="btn btn-ether" (click)="buyClicked()"><i *ngIf="buyBtnDisable" class="fa fa-spinner fa-spin"></i>  Buy Now</button></span>
+        <br>
+      </div>
+      <br>
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Description">
+          <div id="description" class="row collection" style="height: auto;position:relative;">
+            <div style="max-height:100%;overflow-y:auto; overflow-x: hidden">
+              <div [innerHTML]="description"></div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="History">
+          <div id="history" class="tab-pane"><br>
+            <div class="table-responsive historyTable" *ngIf="item.sale != null || item.bids != null">
+              <table class="table">
+                <thead style="position: sticky;top: 0;z-index: 1;">
+                <tr>
+                  <th class="alignCenter">Action</th>
+                  <th class="alignCenter">Price</th>
+                  <th class="alignCenter">From</th>
+                  <th class="alignCenter">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let sale of item.sale">
+                  <td class="alignCenter"><span class="material-icons icon inline-icon">shopping_cart</span>  &nbsp;Sale</td>
+                  <td class="alignRight">{{sale.price}}</td>
+                  <td class="alignCenter">{{sale.owner_id.toString(16)}}</td>
+                  <td class="alignCenter">{{showDateYYYY(sale.created_on,'-')}}</td>
+                </tr>
+                <tr *ngFor="let bid of item.bids">
+                  <td class="alignCenter"><span class="material-icons icon inline-icon">gavel</span>  &nbsp;Bid</td>
+                  <td class="alignRight">{{bid.bid_price}}</td>
+                  <td class="alignCenter">{{bid.user_id.toString(16)}}</td>
+                  <td class="alignCenter">{{showDateYYYY(bid.created_on,'-')}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="item.sale == null && item.bids == null">
+              <p style="font-size:15px;">not available</p>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

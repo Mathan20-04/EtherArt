@@ -1,0 +1,12 @@
+<div class="row marginZero">
+  <p style="font-size:25px; font-weight: 500"><span class="material-icons inline-icon" style="font-size: 40px;">collections</span> Collectables</p>
+  <hr>
+  <div *ngIf="showEmpty">
+    <h4>You are not owning any item! <a routerLink="/dashboard">Take Me to Buy</a></h4>
+  </div>
+  <div *ngIf="show">
+    <div *ngFor="let item of assetList ;  let i = index  "  class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+      <app-owned-item [item]="item"></app-owned-item>
+    </div>
+  </div>
+</div>

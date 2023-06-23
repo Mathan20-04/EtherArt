@@ -1,0 +1,182 @@
+<div class="row content" >
+  <div *ngIf="showReferral" class="row content" style="display: table;">
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-9">
+      <img *ngIf="!isMob" alt="EtherArt" src="assets/afterloginpc.png" style="width: 100%;">
+      <img *ngIf="isMob" alt="EtherArt" src="assets/afterloginmob.png" width="100%">
+    </div>
+    <div *ngIf="showReferral && !isMob" class="col-md-12 col-sm-12 col-lg-3 col-xs-12 referImage"
+         style="background-image: url(assets/overlayrefer.png);background-size:contain;aspect-ratio: 320/416">
+     <app-referral></app-referral>
+    </div>
+    <div *ngIf="showReferral && isMob" class="col-md-12 col-sm-12 col-lg-3 col-xs-12 referImage"
+         style="background-image: url(assets/overlayrefer.png);background-size: contain;margin-top: 20px;">
+      <app-referral></app-referral>
+    </div>
+    <br>
+  </div>
+  <div *ngIf="showSignUp || showLogin" class="row content">
+    <div class="col-md-12 col-sm-12 col-lg-9 col-xs-12">
+      <div *ngIf="!isMob" class="carousel slide" data-interval="3000" data-ride="carousel" id="myCarousel">
+        <ol class="carousel-indicators">
+          <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+          <li data-slide-to="1" data-target="#myCarousel"></li>
+          <li data-slide-to="2" data-target="#myCarousel"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img alt="Los Angeles" src="assets/beforeloginpc.png" style="width:100%;">
+          </div>
+          <div class="item">
+            <img src="assets/victorypc.png" style="width:100%;">
+          </div>
+          <div class="item">
+            <img src="assets/afterloginpc.png" style="width:100%;">
+          </div>
+        </div>
+        <a class="left carousel-control" data-slide="prev" href="#myCarousel">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" data-slide="next" href="#myCarousel">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div *ngIf="isMob" class="carousel slide" data-interval="3000" data-ride="carousel" id="myCarousel">
+        <ol class="carousel-indicators">
+          <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
+          <li data-slide-to="1" data-target="#myCarousel"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img alt="Los Angeles" src="assets/beforeloginmob.png" style="width:100%;">
+          </div>
+          <div class="item">
+            <img src="assets/victorymob.png" style="width:100%;">
+          </div>
+          <div class="item">
+            <img src="assets/afterloginmob.png" style="width:100%;">
+          </div>
+        </div>
+        <a class="left carousel-control" data-slide="prev" href="#myCarousel">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" data-slide="next" href="#myCarousel">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div *ngIf="showSignUp && !isMob" class="col-sm-12 col-md-12 col-lg-3 col-xs-12 "
+         style="display: flex;align-items: center;justify-content: center; background-image: url(assets/overlayrefer.png);background-size: contain;aspect-ratio: 320/416">
+      <app-initsignup (loginSignal)="makeLoginVisible($event)"></app-initsignup>
+    </div>
+    <div *ngIf="showSignUp && isMob" class="col-sm-12 col-md-12 col-lg-3 col-xs-12 "
+         style="display: flex;align-items: center;justify-content: center; background-image: url(assets/overlayrefer.png);background-size: contain;margin-top: 20px;">
+      <br>
+      <app-initsignup (loginSignal)="makeLoginVisible($event)"></app-initsignup>
+    </div>
+    <div *ngIf="showLogin && !isMob" class="col-sm-12 col-md-12 col-lg-3 col-xs-12"
+         style="display: flex;align-items: center;justify-content: center;background-image: url(assets/overlayrefer.png);background-size: contain;padding-bottom: 135px;aspect-ratio: 320/416">
+      <div style="margin-top: 100px">
+        <app-login (loggedIn)="makeinitSignUpVisible($event)"></app-login>
+      </div>
+    </div>
+    <div *ngIf="showLogin && isMob" class="col-sm-12 col-md-12 col-lg-3 col-xs-12"
+         style="display: flex;align-items: center;justify-content: center;background-image: url(assets/overlayrefer.png);background-size: contain;margin-top: 20px;">
+      <app-login (loggedIn)="makeinitSignUpVisible($event)"></app-login>
+    </div>
+  </div>
+</div>
+
+<!-- hide mystery box -->
+<!-- <div *ngIf="item != null && showReferral" class="row content"><br>
+  <br>
+  <h3 *ngIf="isMob" style="text-align: left;margin-left: 15px;">EtherArt Mystery Box</h3>
+  <div *ngIf="isMob" class="col-sm-5 col-md-5 col-lg-5">
+    <div style="justify-content: center;line-height: 1.5">
+      <p style="font-size: 21px;">A Rewarding Mystery Awaits... </p>
+      <p style="font-size: 21px;">Unbox this Mystery for a shot at owning a legendary collectable from EtherArt's exclusive <span style="color:  #00a2ed;"> <i>'India's 75th freedom anniversary'</i></span> collection.</p>
+      <p style="font-size: 21px;">No matter which rare NFT is unboxed, each one promises true celebration of India.</p>
+      <h4 style="font-size: 21px;font-weight: 400;"><i><span style="color: #00a2ed">One Nation, One Emotion, One Identity</span></i></h4>
+      <p style="font-size: 21px;font-weight: 500;"><i>Jai Bharath!</i></p><br>
+    </div>
+  </div>
+  <div *ngIf="isMob">
+    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12"><br>
+      <app-item [item]="item"></app-item>
+    </div>
+  </div>
+  <div *ngIf="!isMob" style="margin-left:120px;margin-right: 120px;">
+    <h3 style="margin-left: 20px;">EtherArt Mystery Box</h3>
+    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12"><br>
+      <app-item [item]="item"></app-item>
+    </div>
+    <div *ngIf="!isMob" class="col-sm-8 col-md-8 col-lg-8 col-xs-12">
+      <br>
+      <div style="justify-content: center;line-height: 1.5"><br>
+        <p style="font-size: 21px;">A Rewarding Mystery Awaits... </p>
+        <p style="font-size: 21px;">Unbox this Mystery for a shot at owning a legendary collectable from EtherArt's exclusive  <span style="color:  #00a2ed;"><i>'India's 75th freedom anniversary'</i></span> collection.</p>
+        <p style="font-size: 21px;">No matter which rare NFT is unboxed, each one promises true celebration of India.</p>
+        <p style="font-size: 21px;">By purchasing this Mystery Box, you will receive a random NFT. No matter <br> which
+          one you’re bestowed with, each is a celebration of India!</p>
+        <br>
+        <p style="font-size: 21px;font-weight: 400"><i><span style="color:  #00a2ed">One Nation, One Emotion, One Identity</span></i></p>
+        <p style="font-size: 21px;font-weight: 500"><i>Jai Bharath!</i></p>
+      </div>
+    </div>
+  </div>
+</div> -->
+<br>
+<div class="row marginZero">
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Sale By EtherArt">
+      <div style="overflow-x: hidden"><br>
+        <app-tagged [value]="recent"></app-tagged>
+      </div>
+    </mat-tab>
+    <mat-tab *ngIf="showReferral && assetList.length > 0" label="Sale By Owner">
+      <div  style="overflow-x: hidden"><br>
+        <app-tagged [value]="ownersale"></app-tagged>
+      </div>
+    </mat-tab>
+    <mat-tab *ngIf="showReferral && assetList.length > 0" label="Open for Bids">
+      <div  style="overflow-x: hidden"><br>
+        <app-tagged [value]="ownerbid"></app-tagged>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<!--<div class="row menuItem">-->
+  <!--    <div class="col-md-9 col-lg-9 col-sm-12">-->
+  <!--      <app-graph></app-graph>-->
+  <!--    </div>-->
+  <!-- <div class="col-sm-6">
+    <div class="menuList">
+      <div>
+        <h4 class="headName">GUIDE TO NFT</h4>
+        <p>Learn how to buy NFT in combination with
+          cryptocurrency to start collecting new
+          projects in Num-time.
+        </p><br>
+        <button class="btn">Read</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class=menuList>
+      <div>
+        <h4 class="headName">FAQs</h4>
+        <p>
+          Here we break it down and answer all your
+          questions from what an NFT is to how it
+          would bee an asset in the digital market.
+        </p><br>
+        <button class="btn">Read</button>
+      </div>
+    </div>
+  </div> -->
+<!--</div>-->
+<app-footer></app-footer>

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-expand" id="mNavbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand navmenu" (click)="openDashboard()"><span><img src="assets\logoBlue.svg" alt="" width="30px" height="30px" class="logo"></span>EtherArt</a>
+    </div>
+    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
+      <!-- <ul class="nav navbar-nav">
+        <li class="dropdown"><a style="color:blue" (click)="onReserve()">Reserved</a>
+        </li>
+      </ul> -->
+      <!-- <ul class="nav navbar-nav" [ngStyle]="{'margin-top':(!isMob)?'2px':''}">
+        <li class="dropdown"><a class="dropdown-toggle pointer" data-toggle="dropdown">Explore</a>
+          <ul class="dropdown-menu">
+            <li><a  *ngFor="let item of menuCollList;  let i = index  "   [state]="{item}" (click)="onMenuClick(item)" class="drop"><span class="dropColor">{{item.name}}</span></a></li>
+          </ul>
+        </li>
+      </ul> -->
+
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!joinPage" class="dropdown">
+          <a  (click)=" isLoggedIn == false ?openLoginModal():false" class="dropdown-toggle pointer" data-toggle="dropdown" >
+            <span class="material-icons inline-icon pointer">person</span>
+          </a>
+          <ul *ngIf="isLoggedIn == true" class="dropdown-menu">
+            <li><a [routerLink]="['myaccount']" class="drop"><span  class="dropColor">My Account</span></a></li>
+            <li><a [routerLink]="['favourite']" [state]="{option: 'favourite'}" class="drop"><span class="dropColor">My Favourite</span></a></li>
+            <li><a [routerLink]="['mytickets']" [state]="{option: 'tickets'}" class="drop"><span class="dropColor">My Tickets</span></a></li>
+            <li><a [routerLink]="['withdraw']" class="drop"><span class="dropColor">My Withdraw</span></a></li>
+            <li><a (click)="logout()" class="drop"> <span class="dropColor">Logout</span></a></li>
+          </ul>
+        </li>
+        <li *ngIf="!darkMode"><a (click)="toggleDarkTheme()" matTooltipPosition="above" mat-raised-button matTooltip="Switch to Dark Mode"  class="pointer"><span class="material-icons">dark_mode</span></a></li>
+        <li *ngIf="darkMode"><a (click)="toggleDarkTheme()"  matTooltipPosition="above" mat-raised-button matTooltip="Switch to Light Mode"  class="pointer"><span class="material-icons">light_mode</span></a></li>
+      </ul>
+    </div>
+    <form *ngIf="!joinPage" class="navbar-form" [ngStyle]="{'margin-top':(!isMob)?'17px':''}">
+      <a class="alignCenter" (click)="openGuide()"><h4>Guide to EtherArt</h4></a>
+    </form>
+    <!--      <div class="form-group has-feedback has-search ">-->
+    <!--        <span class="glyphicon glyphicon-search form-control-feedback search"></span>-->
+    <!--        <input type="text" class="form-control" placeholder="Search">-->
+    <!--      </div>-->
+  </div>
+</nav>

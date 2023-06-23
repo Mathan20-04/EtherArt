@@ -1,0 +1,129 @@
+<p style="font-size:25px; font-weight: 500"><span class="material-icons inline-icon" style="font-size: 40px;">account_balance_wallet</span> Wallet</p>
+<hr>
+<div class="">
+  <div *ngIf="snapshot != null" class="reward">
+    <p style="font-size: 19px;font-weight: 400">Reward Earned  <span class="totalEarned">:&nbsp;&nbsp;{{snapshot.earned}}</span></p>
+    <p style="font-size: 19px;font-weight: 400">Reward Redeemed <span class="rewardBalance"> :&nbsp; {{snapshot.redeemed}}</span></p>
+    <p style="font-size: 19px;font-weight: 400">Reward Remaining <span class="rewardBalance">:&nbsp; {{snapshot.remaining}}</span></p>
+    <p style="font-size: 19px;font-weight: 400">Cash Balance  <span class="cashBalance">&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; {{snapshot.cash_balance}}</span></p>
+  </div>
+  <br>
+  <div class="dropdown">
+    <span class="material-icons filter_alt pointer icon" data-toggle="dropdown">filter_alt</span><br>
+    <ul class="dropdown-menu sortlike">
+      <li (click)="filter('Earned')" ><a class="drop">Reward Earned</a></li>
+      <li (click)="filter('Redeemed')"><a class="drop">Reward Redeemed</a></li>
+      <li (click)="filter('Purchase')"><a class="drop">Purchase</a></li>
+      <li (click)="filter('Sale')"><a class="drop">Sales</a></li>
+    </ul>
+  </div>
+  <div *ngFor="let item of showItems" class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+    <app-walletitem [item]="item"></app-walletitem>
+  </div>
+  <br><br>
+  <!-- <div class="container">
+    <div class="table-responsive scroll">
+      <table class="table table-bordered ">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+        <tr>
+          <th>Opening Date</th>
+          <th>Opening Reward</th>
+          <th>Opening Cash</th>
+          <th>Closing Date</th>
+          <th>Closing Reward</th>
+          <th>Closing Cash</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="wallet != null">
+          <td>{{wallet.opening_date}}</td>
+          <td>{{wallet.opening_soft_balance}}</td>
+          <td>{{wallet.opening_hard_balance}}</td>
+          <td>{{wallet.closing_date}}</td>
+          <td>{{wallet.closing_soft_balance}}</td>
+          <td>{{wallet.closing_hard_balance}}</td>
+        </tr>
+        </tbody>
+<div class="container">
+  <div class="table-responsive scroll">
+  <table class="table table-bordered ">
+    <thead style="position: sticky;top: 0;z-index: 1;">
+    <tr>
+      <th>Opening Date</th>
+      <th>Opening Reward</th>
+      <th>Opening Cash</th>
+      <th>Closing Date</th>
+      <th>Closing Reward</th>
+      <th>Closing Cash</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngIf="wallet != null">
+      <td>{{wallet.opening_date}}</td>
+      <td>{{wallet.opening_soft_balance}}</td>
+      <td>{{wallet.opening_hard_balance}}</td>
+      <td>{{wallet.closing_date}}</td>
+      <td>{{wallet.closing_soft_balance}}</td>
+      <td>{{wallet.closing_hard_balance}}</td>
+    </tr>
+    </tbody>
+
+      </table>
+    </div>
+    <h2>Wallet Transaction</h2>
+    <div class="table-responsive scroll">
+      <table  class="table table-bordered ">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Debit</th>
+          <th>Credit</th>
+          <th>Reward Balance</th>
+          <th>Cash Balance</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="trans != null">
+        <tr *ngFor="let item of trans" >
+          <td>{{item.date}}</td>
+          <td>{{item.desc}}</td>
+          <td>{{item.dramount}}</td>
+          <td>{{item.cramount}}</td>
+          <td>{{item.balreward}}</td>
+          <td>{{item.balcash}}</td>
+        </tr>
+        </tbody>
+  </table>
+  </div>
+  <h2>Wallet Transaction</h2>
+  <div class="table-responsive scroll">
+    <table  class="table table-bordered ">
+      <thead style="position: sticky;top: 0;z-index: 1;">
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Reward Balance</th>
+        <th>Cash Balance</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="trans != null">
+      <tr *ngFor="let item of trans" >
+        <td>{{item.date}}</td>
+        <td>{{item.desc}}</td>
+        <td>{{item.dramount}}</td>
+        <td>{{item.cramount}}</td>
+        <td>{{item.balreward}}</td>
+        <td>{{item.balcash}}</td>
+      </tr>
+      </tbody>
+
+      </table>
+    </div>
+  </div>
+    </table>
+  </div>
+</div> -->
+  <p> &nbsp;</p>
+</div>

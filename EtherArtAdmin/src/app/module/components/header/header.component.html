@@ -1,0 +1,93 @@
+<nav class="navbar navbar-default" id="mNavbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand navmenu" routerLink="/dashboard"><span><img alt="" class="logo"
+                                                                               height="30px" src="assets\logoBlue.svg"
+                                                                               width="30px"></span>EtherArt</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown">
+                    <a class="dropdown-toggle pointer " data-toggle="dropdown">Master</a>
+                    <ul *ngIf="user!=''" class="dropdown-menu">
+                        <li><a [routerLink]="['category']" class="drop"><span class="dropColor">Category</span> </a>
+                        </li>
+                        <li><a [routerLink]="['subcategory']" class="drop"><span class="dropColor">Sub Category</span>
+                        </a></li>
+                        <li><a [routerLink]="['metadata']" class="drop"> <span class="dropColor">Metadata</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle pointer" data-toggle="dropdown">Collection</a>
+                    <ul *ngIf="user!=''" class="dropdown-menu">
+                        <li><a [routerLink]="['collection']" class="drop"><span class="dropColor">Upload </span> </a>
+                        </li>
+                        <li><a [routerLink]="['sort']" class="drop"><span class="dropColor">Sort Parts</span> </a></li>
+                        <li><a [routerLink]="['configure']" class="drop"><span class="dropColor">Configure</span> </a>
+                        </li>
+                        <li><a [routerLink]="['view']" class="drop"> <span class="dropColor">Generate</span></a></li>
+                        <li><a [routerLink]="['release']" class="drop"> <span
+                                class="dropColor">Manage Release</span></a></li>
+                        <li><a [routerLink]="['rarity']" class="drop"> <span class="dropColor">Check Rarity</span></a>
+                        </li>
+                        <li><a [routerLink]="['browse']" class="drop"> <span class="dropColor">Browse</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a [routerLink]="user != ''?['updateHousePrice']:''" class="dropdown-toggle pointer"
+                       data-toggle="dropdown">House Price</a>
+                </li>
+                <li class="dropdown">
+                    <a [routerLink]="user != ''?['payout']:''" class="dropdown-toggle pointer"
+                       data-toggle="dropdown">Payout</a>
+                </li>
+
+                <li class="dropdown">
+                    <a [routerLink]="user != ''?['tickets']:''" class="dropdown-toggle pointer"
+                       data-toggle="dropdown">Ticket</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle pointer" data-toggle="dropdown">Report</a>
+                    <ng-container *ngIf="user!=''">
+                        <ul  class="dropdown-menu">
+                            <li *ngFor="let item of reports; let i = index" class="dropdown dropdown-submenu"><a
+                                    class="dropdown-toggle pointer" data-toggle="dropdown">{{item.report_name}}</a>
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let subitem of item.reports; let j = index"><a
+                                            (click)="reportClick(i,j)"
+                                            class="pointer">{{subitem.report_name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </li>
+                <li class="dropdown">
+                    <a (click)="trackReport()" class="dropdown-toggle pointer"
+                       data-toggle="dropdown">Track</a>
+                </li>
+                <li class="dropdown">
+                    <a (click)="trackReportDetail()" class="dropdown-toggle pointer"
+                       data-toggle="dropdown">Track Detail</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a (click)="user=='' ?openLogin():false" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="material-icons pointer">person</span>
+                    </a>
+                    <ul *ngIf="user!=''" class="dropdown-menu">
+                        <li><a class="drop"><span class="dropColor"></span>{{user}}</a></li>
+                        <li><a (click)="logout()" class="drop"> <span class="dropColor">Logout</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,178 @@
+<div *ngIf="!isMob" class="row marginZero">
+  <div class="col-sm-9">
+    <owl-carousel-o [options]="customOptions" >
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140405730188_2.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140527856240_19.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140542229935_22.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155553190249_1.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155603334044_3.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155608130969_4.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155617682776_6.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155636929280_10.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155651357486_13.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155753365143_26.png&t=view&s=700"  alt="EtherArt"></ng-template>
+    </owl-carousel-o>
+  </div>
+  <div class="col-sm-3"  style="display: flex;align-items: center;justify-content: center; background-image: url(assets/overlayrefer.png);background-size: contain;aspect-ratio: 320/416">
+    <div>
+      <form>
+        <div [hidden]="isOTP"> <br>
+          <h4 style="font-weight: bolder" class="alignCenter">Azadi ka Amrit Mahotsav!</h4>
+          <h4 class="alignCenter">Get your Rare Digital Collectables </h4>
+          <h4 class="alignCenter">featuring PM Modiji and Ganesha.</h4>
+        </div> <br>
+        <div [hidden]="isOTP">
+          <h4 style="font-weight: bolder" class="alignCenter">Sign up now for INSTANT</h4>
+          <h4 class="alignCenter">Rs. 200/- off your collectable.</h4>
+        </div>
+        <div *ngIf="isOTP" class="alignCenter">
+          <h3>Enter OTP and Password</h3><br>
+        </div>
+        <div class="mobile">
+          <div>
+            <form #f="ngForm" [formGroup]="phoneForm">
+              <ngx-intl-tel-input
+                [cssClass]="'custom'"
+                [disabled]="disable"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [maxLength]="maxLength"
+                [numberFormat]="PhoneNumberFormat.National"
+                [phoneValidation]="true"
+                [preferredCountries]="preferredCountries"
+                [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                [searchCountryFlag]="true"
+                [selectFirstCountry]="false"
+                [selectedCountryISO]="CountryISO.India"
+                [separateDialCode]="separateDialCode"
+                formControlName="phone"
+                name="phone">
+              </ngx-intl-tel-input>
+            </form>
+          </div>
+          <br>
+        </div>
+        <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+          <input [(ngModel)]="data.otp" class="form-control" id="otp" name="otp" placeholder=" OTP" style="height: 44px;width: 310px;"
+                 type="text">
+        </div>
+        <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+          <input [(ngModel)]="data.password" class="form-control" id="password" name="password" placeholder="Password"
+                 style="height: 44px;width: 310px;" type="password">
+        </div>
+        <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+          <input [(ngModel)]="data.rPassword" class="form-control" id="rePassword" name="rePassword" placeholder="Re-EnterPassword"
+                 style="height: 44px;width: 310px;" type="password">
+        </div>
+        <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+          <button (click)="cancelSignup()" class="btn btn-default cancelBtn leftSide">Cancel</button>
+          <button (click)="signUp()" [disabled]="signUpBtnDisable" class="btn rightSide signbtn"><i *ngIf="signUpBtnDisable" class="fa fa-spinner fa-spin"></i>
+            Sign Up
+          </button>
+        </div>
+        <div *ngIf="isOTP"   class="form-group" class="alignCenter">
+          <button class="btn btn-link" (click)="sendOTP()" [disabled]="enable" style="color:white ; border:none">Resend OTP</button>
+        </div>
+        <div *ngIf="!isOTP" class="form-group" class="alignCenter">
+          <button (click)="sendOTP()" [disabled]="sendOTPBtnDisable" class="btn signbtn"><i *ngIf="sendOTPBtnDisable"
+                                                                                            class="fa fa-spinner fa-spin"></i>Send OTP
+          </button>
+        </div>
+        <div *ngIf="!isOTP" class="alignCenter marginLR">
+          <h4 style="color:white; ">All  Purchases are made in INR or
+            USD</h4>
+          <h4 style="color:white; ">No Crypto required</h4>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="isMob" class="row marginZero">
+  <div [hidden]="isOTP" *ngIf="isMob" style="display: flex;align-items: center;justify-content: center; background-image: url(assets/overlayrefer.png);background-size: contain;">
+    <div><br>
+      <h4 style="font-weight: bolder" class="alignCenter">Azadi ka Amrit Mahotsav!</h4>
+      <h4 class="alignCenter">Get your Rare Digital Collectables </h4>
+      <h4 class="alignCenter">featuring PM Modiji and Ganesha.</h4><br>
+    </div>
+  </div>
+  <div *ngIf="isMob" class="col-sm-9">
+    <owl-carousel-o [options]="customOptions" >
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140405730188_2.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140527856240_19.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731140542229935_22.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155553190249_1.png&t=view&s=700" alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155603334044_3.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155608130969_4.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155617682776_6.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155636929280_10.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155651357486_13.png&t=view&s=700"  alt="EtherArt"></ng-template>
+      <ng-template carouselSlide><img src="https://api.etherart.ai/api/main/collection/image?i=1&n=20220731155753365143_26.png&t=view&s=700"  alt="EtherArt"></ng-template>
+    </owl-carousel-o>
+  </div>
+  <div *ngIf="isMob" style="display: flex;align-items: center;justify-content: center; background-image: url(assets/overlayrefer.png);background-size: contain;">
+    <form>
+      <div [hidden]="isOTP"><br>
+        <h4 style="font-weight: bolder" class="alignCenter">Sign up now for INSTANT</h4>
+        <h4 class="alignCenter">Rs. 200/- off your collectable.</h4>
+      </div>
+      <div *ngIf="isOTP" class="alignCenter">
+        <h3>Enter OTP and Password</h3><br>
+      </div>
+      <div class="mobile">
+        <div>
+          <form #f="ngForm" [formGroup]="phoneForm">
+            <ngx-intl-tel-input
+              [cssClass]="'custom'"
+              [disabled]="disable"
+              [enableAutoCountrySelect]="true"
+              [enablePlaceholder]="true"
+              [maxLength]="maxLength"
+              [numberFormat]="PhoneNumberFormat.National"
+              [phoneValidation]="true"
+              [preferredCountries]="preferredCountries"
+              [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+              [searchCountryFlag]="true"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.India"
+              [separateDialCode]="separateDialCode"
+              formControlName="phone"
+              name="phone">
+            </ngx-intl-tel-input>
+          </form>
+        </div>
+        <br>
+      </div>
+      <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+        <input [(ngModel)]="data.otp" class="form-control" id="otp" name="otp" placeholder=" OTP" style="height: 44px;width: 310px;"
+               type="text">
+      </div>
+      <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+        <input [(ngModel)]="data.password" class="form-control" id="password" name="password" placeholder="Password"
+               style="height: 44px;width: 310px;" type="password">
+      </div>
+      <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+        <input [(ngModel)]="data.rPassword" class="form-control" id="rePassword" name="rePassword" placeholder="Re-EnterPassword"
+               style="height: 44px;width: 310px;" type="password">
+      </div>
+      <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+        <button (click)="cancelSignup()" class="btn btn-default cancelBtn leftSide">Cancel</button>
+        <button (click)="signUp()" [disabled]="signUpBtnDisable" class="btn rightSide signbtn"><i *ngIf="signUpBtnDisable" class="fa fa-spinner fa-spin"></i>
+          Sign Up
+        </button>
+      </div>
+      <div *ngIf="isOTP"   class="form-group" class="alignCenter">
+        <button class="btn btn-link" (click)="sendOTP()" [disabled]="enable" style="color:white ; border:none">Resend OTP</button>
+      </div>
+      <div *ngIf="!isOTP" class="form-group" class="alignCenter">
+        <button (click)="sendOTP()" [disabled]="sendOTPBtnDisable" class="btn signbtn"><i *ngIf="sendOTPBtnDisable"
+                                                                                          class="fa fa-spinner fa-spin"></i>Send OTP
+        </button>
+      </div>
+      <div *ngIf="!isOTP" class="alignCenter marginLR">
+        <h4 style="color:white; ">All  Purchases are made in INR or
+          USD</h4>
+        <h4 style="color:white; ">No Crypto required</h4><br>
+      </div>
+    </form>
+  </div>
+</div>

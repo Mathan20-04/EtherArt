@@ -1,0 +1,38 @@
+<div class="row marginZero">
+  <div>
+    <p style="font-size:25px; font-weight: 500" class="leftSide"><span class="material-icons inline-icon" style="font-size: 40px;">account_balance</span> Payment Method</p>
+    <p class="rightSide"><span class="material-icons addpay" matTooltipPosition="above" mat-raised-button matTooltip="Add Payment Method"  (click)="openAddPayment()">add_circle</span></p>
+  </div>
+  <div class="col-sm-6">
+    <div class="table-responsive">
+      <table class="table ">
+        <tbody *ngFor="let paymethod of paymentMethod">
+        <tr *ngIf="paymethod.upi_id != ''">
+          <td>
+            <label class="col-form-label"><img src="assets/upi.svg" alt="" width="30px" height="30px"> UPI </label><br>
+            UPI Id : {{paymethod.upi_id}}
+          </td>
+<!--          <td class="pointer alignCenter"><a ><span class="material-icons inline-icon">turn_left</span>Update</a></td>-->
+        </tr>
+        <tr *ngIf="paymethod.account_number != ''">
+          <td>
+            <label class="col-form-label"><img src="assets/internet-banking.svg" alt="" width="30px" height="30px">  Net Banking </label><br>
+            Account No : {{paymethod.account_number}}
+          </td>
+<!--          <td class="pointer alignCenter"><a><span class="material-icons inline-icon">turn_left</span>Update</a></td>-->
+        </tr>
+        <tr *ngIf="paymethod.card_number != ''">
+          <td>
+            <label class="col-form-label"><img src="assets/credit-card-svgrepo-com.svg" alt="" width="30px" height="30px">  Credit / Debit Card</label><br>
+            CardNo : {{paymethod.card_number}} Expires On : {{paymethod.expires_on}}
+          </td>
+<!--          <td class="pointer alignCenter"><a><span class="material-icons inline-icon">turn_left</span>Update</a></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="showAddPayment" class="col-sm-6">
+    <app-add-payment (childButtonEvent)="receivedMessageHandler($event)"></app-add-payment>
+  </div>
+</div>

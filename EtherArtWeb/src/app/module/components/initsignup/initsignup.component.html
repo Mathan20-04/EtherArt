@@ -1,0 +1,74 @@
+<div>
+  <form>
+    <div [hidden]="isOTP">
+      <!--      <h3 class="">GET STARTED</h3><br>-->
+      <!--      <div>-->
+      <!--        <p class="leftPos liveCout">LIVE COUNT</p>-->
+      <!--        <div class="rightPos"><img src="assets\logoBlue.svg" width="30px" height="30px" class="logo"><p class="rightSide liveCout">+<span class="liveCout">12409</span></p></div>-->
+      <!--      </div>-->
+      <h3 class="alignCenter">Create Account</h3><br>
+    </div>
+    <div *ngIf="isOTP" class="alignCenter">
+      <h3>Enter OTP and Password</h3><br>
+    </div>
+    <div class="mobile">
+      <div>
+        <form #f="ngForm" [formGroup]="phoneForm">
+          <ngx-intl-tel-input
+            [cssClass]="'custom'"
+            [disabled]="disable"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="true"
+            [maxLength]="maxLength"
+            [numberFormat]="PhoneNumberFormat.National"
+            [phoneValidation]="true"
+            [preferredCountries]="preferredCountries"
+            [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+            [searchCountryFlag]="true"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.India"
+            [separateDialCode]="separateDialCode"
+            formControlName="phone"
+            name="phone">
+          </ngx-intl-tel-input>
+        </form>
+      </div>
+      <br>
+    </div>
+    <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+      <input [(ngModel)]="data.otp" class="form-control" id="otp" name="otp" placeholder=" OTP" style="height: 44px;width: 310px;"
+             type="text">
+    </div>
+    <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+      <input [(ngModel)]="data.password" class="form-control" id="password" name="password" placeholder="Password"
+             style="height: 44px;width: 310px;" type="password">
+    </div>
+    <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+      <input [(ngModel)]="data.rPassword" class="form-control" id="rePassword" name="rePassword" placeholder="Re-EnterPassword"
+             style="height: 44px;width: 310px;" type="password">
+    </div>
+    <div *ngIf="isOTP" class="form-group" style="margin-left: 20px;margin-right:20px">
+      <button (click)="cancelSignup()" class="btn btn-default cancelBtn leftSide">Cancel</button>
+      <button (click)="signUp()" [disabled]="signUpBtnDisable" class="btn rightSide signbtn"><i *ngIf="signUpBtnDisable" class="fa fa-spinner fa-spin"></i>
+        Sign Up
+      </button>
+    </div>
+    <div *ngIf="isOTP"   class="form-group" class="alignCenter">
+      <button class="btn btn-link" (click)="sendOTP()" [disabled]="enable" style="color:white ; border:none">Resend OTP</button>
+    </div>
+    <div *ngIf="!isOTP" class="form-group" class="alignCenter">
+      <button (click)="sendOTP()" [disabled]="sendOTPBtnDisable" class="btn signbtn"><i *ngIf="sendOTPBtnDisable"
+                                                                                          class="fa fa-spinner fa-spin"></i>Send OTP
+      </button>
+    </div>
+    <div *ngIf="!isOTP" ><br>
+      <p class="alignCenter">Existing Member? <a (click)="showLogin()" class="login pointer signLink">Login</a></p>
+    </div>
+
+    <div *ngIf="!isOTP" class="alignCenter marginLR">
+      <h3 style="color:white; ">All  Purchases are made in INR or
+        USD</h3>
+      <h3 style="color:white; ">No Crypto required</h3>
+    </div>
+  </form>
+</div>

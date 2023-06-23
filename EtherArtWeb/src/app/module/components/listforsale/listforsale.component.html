@@ -1,0 +1,57 @@
+<div>
+  <span class="leftPos"></span>
+  <span (click)="close()" class="material-icons icon rightPos" matTooltipPosition="above" mat-raised-button matTooltip="Close">close</span>
+</div>
+<div>
+  <h4 class="leftPos">List For Sale</h4>
+</div><br>
+<div class="row marginLR">
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-6" for="amount">Your Purchased Price</label>
+      <span class="col-sm-6">
+        <input [(ngModel)]="purchasedPrice" class="form-control" id="purchasePrice" name="purchasePrice" type="number" readonly>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-6 required-field" for="amount">Enter Amount for Sale</label>
+      <span class="col-sm-6">
+        <input [(ngModel)]="newPrice" class="form-control" id="amount" name="amount" type="number">
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-6" for="amount">Estimated Profit</label>
+      <span class="col-sm-6">
+        <input [(ngModel)]="newPrice - purchasedPrice" class="form-control" id="profit" name="profit" type="number" readonly>
+      </span>
+    </div>
+  </div>
+  <h5>Commission is 25% of profit<sup>?</sup></h5><br>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-6" for="commission">Commission</label>
+      <span class="col-sm-6">
+        <input placeholder="{{(newPrice == '' ? 0 : (newPrice - purchasedPrice)/4) | number : '1.2-2'}}" class="form-control" id="commission" name="commission" type="text" readonly>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="col-sm-6" for="earning">You are Earning</label>
+      <span class="col-sm-6">
+        <input placeholder="{{(newPrice == '' ? 0 : (newPrice-(newPrice - purchasedPrice)/4)) | number : '1.2-2'}}" class="form-control" id="earning" name="earning" type="text" readonly>
+      </span>
+    </div>
+  </div>
+  <br>
+  <h5 class="required-field">You are Agreed to T&C for Resale</h5>
+  <div>
+    <button class="btn rightPos" (click)="putOnSale()">Put On Sale</button>
+    <button (click)="close()" class="btn btn-default rightPos goback">Cancel</button>
+  </div>
+  <br>
+</div>

@@ -1,0 +1,37 @@
+.navbar-form {
+  text-align: right;
+}
+
+.Search {
+  cursor: pointer;
+}
+
+.cart {
+  font-size:20px;
+}
+
+.myWallet {
+  font-size: 20px;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+/*.navbar {*/
+/*  background-color: #00a2ed;*/
+/*  color: white;*/
+/*}*/
+
+.search {
+  color: black;
+}
+
+.navbar-toggle {
+  color: black;
+}
+
+#myNavbar,li{
+   margin-top: 3px;
+  margin-left: 10px;
+}

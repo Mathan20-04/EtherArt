@@ -1,0 +1,12 @@
+<div class="" style="background-color: white;width: 235px;height: 231px;margin-left: 45px;border-radius:10px;">
+	<svg class="progress__svg" width="115" height="115" style="margin:50px;color:#dbecf8;" viewBox="0 0 120 120">
+		<circle class="progress__meter" cx="60" cy="60" [attr.r]="radius" stroke-width="14" />
+		<circle class="progress__value" [style.strokeDasharray]="circumference" [style.strokeDashoffset]="dashoffset" cx="60" cy="60"
+		 [attr.r]="radius" stroke-width="12" />
+	</svg>
+
+  <div class="progress__value-text" style="color:#212529;margin-top:-131px;font-family: Gotham-bold;font-size:30px;font-weight: bold">{{value}}%</div>
+<!--  <div class="target">Target Achieved</div>-->
+
+</div>
+

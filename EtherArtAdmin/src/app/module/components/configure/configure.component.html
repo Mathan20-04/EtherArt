@@ -1,0 +1,63 @@
+<div class="row collection">
+    <div class="col-sm-4">
+        <div class="form-group form-inline">
+            <label for="collection">Select Collection</label><br>
+            <select (change)="changeImage($event.target.value)" [(ngModel)]="selectedImageId" class="form-control"
+                    id="collection" style="width: 300px;">
+                <option *ngFor="let collection of collectionList; let i = index"
+                        value="{{collection.image_id}}">{{collection.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group form-inline">
+            <label for="collection">Select First Part</label><br>
+            <select (change)="changeFirstPart($event.target.value)" [(ngModel)]="selectedFirstPartId"
+                    class="form-control" id="partOne" style="width: 300px;">
+                <option *ngFor="let part of parts; let i = index" value="{{part.part_id}}">{{part.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group form-inline">
+            <label for="collection">Select Second Part</label><br>
+            <select (change)="changeSecondPart($event.target.value)" [(ngModel)]="selectedSecondPartId"
+                    class="form-control" id="partTwo" style="width: 300px;">
+                <option *ngFor="let part of parts; let i = index" value="{{part.part_id}}">{{part.title}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="configure">
+        <div class="table-responsive configureTable">
+            <table *ngIf="load" class="table table-bordered">
+                <thead style="position: sticky;top: 0;z-index: 1;">
+                <tr class="alignCenter">
+                    <td class="alignCenter"><h3>Variations</h3></td>
+                    <td *ngFor="let secondVariation of secondVariationList">
+                        <img [alt]="secondVariation.title" [src]="secondVariation.url+'&s=700'" height="100px" alt="EtherArt"
+                             style="background-color: white;margin-bottom: 10px;" width="100px"  matTooltipPosition="above" mat-raised-button matTooltip="first variation : {{secondVariation.title}}">
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let firstVariation of firstVariationList;let i = index" class="alignCenter">
+                    <td style="background-color: #f4f4f4">
+                        <img [alt]="firstVariation.title" [src]="firstVariation.url+'&s=700'" height="100px" alt="EtherArt"
+                             style="background-color: white;margin-bottom: 10px;" width="100px"  matTooltipPosition="above" mat-raised-button matTooltip="second variation : {{firstVariation.title}}">
+                    </td>
+                    <td *ngFor="let secondVariation of secondVariationList;let j = index"
+                        style="vertical-align: middle">
+                        <input [(ngModel)]="constraintArr[i][j]" data-toggle="tooltip" id="{{j}}+{{i}}"
+                               name="{{i}}+{{j}}" style="width: 25px;height: 25px;cursor: pointer;"
+                               title="( {{firstVariation.title }} , {{secondVariation.title}} )"
+                               type="checkbox">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button (click)="saveConstraint()" class="material-icons save" matTooltipPosition="above" mat-raised-button matTooltip="save">save</button>

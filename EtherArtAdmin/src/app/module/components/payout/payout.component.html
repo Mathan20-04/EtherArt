@@ -1,0 +1,73 @@
+<div class="dropdown">
+    <span class="material-icons sort pointer icon leftSide" (click)="filterOpen()">filter_list_alt</span>
+<!--    <span class="rightSide" style="margin-left:30px;margin-right: 30px;"><h4>USD Balance : <b></b></h4> </span>-->
+    <span class="rightSide" style="margin-right: 30px;"><h4>INR Balance : <b>Rs.{{INRBalance}}</b></h4></span>
+</div>
+<div *ngIf="isfilterOpen" class="row collection">
+    <br>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="from">From</label>
+            <input type="date" class="form-control" id="from" style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="to">To</label>
+            <input type="date" class="form-control" id="to"  style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="status">Status</label>
+            <input type="text" class="form-control" id="status"  style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="user">User</label>
+            <input type="text" class="form-control" id="user"  style="height: 44px">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-form-label" for="mobile">Mobile</label>
+            <input type="number" class="form-control" id="mobile"  style="height: 44px">
+        </div>
+    </div>
+</div>
+<div class="marginLR">
+    <h3>Payout Requests</h3>
+    <div class="table-responsive  payoutRequestTable">
+        <table class="table">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+            <tr>
+                <th>Date</th>
+                <th>User Name</th>
+                <th>User Id</th>
+                <th>Reuest Id</th>
+<!--                <th>Payment Id</th>-->
+                <th class="alignRight">Request Amount</th>
+                <th class="alignCenter">Status</th>
+                <th colspan="2" class="alignCenter">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of payOutRequestList">
+                <td>{{showDateYYYY(item.created_on,'-')}}</td>
+                <td></td>
+                <td>{{item.user_id.toString(16)}}</td>
+                <td>{{item.request_id}}</td>
+<!--                <td *ngIf="item.payment_method != null">{{item.payment_method.payment_id}}</td>-->
+<!--                <td *ngIf="item.payment_method == null">Should not happen</td>-->
+                <td class="alignRight">{{item.amount}}</td>
+                <td class="alignCenter">{{item.status}}</td>
+                <td><a class="pointer"><span class="material-icons inline-icon">task_alt</span> Verify</a></td>
+                <td *ngIf="item.status == 'PAYOUTSUCEES'"></td>
+                <td *ngIf="item.status != 'PAYOUTSUCEES'" class="pointer alignCenter"><a (click)="openMakePayment(item)"><span class="material-icons inline-icon">sync_alt</span> Pay</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>

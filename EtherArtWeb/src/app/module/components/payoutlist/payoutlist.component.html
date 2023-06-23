@@ -1,0 +1,136 @@
+<h4><span class="material-icons sort filter pointer icon leftSide inline-icon" (click)="filterOpen()">filter_list_alt</span> Payout List</h4>
+<div *ngIf="isfilterOpen" class="row content">
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label class="col-form-label" for="phone">Mobile</label>
+      <form #f="ngForm" [formGroup]="phoneForm" id="phone">
+        <ngx-intl-tel-input
+          [cssClass]="'custom'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="countryiso"
+          [maxLength]="maxLength"
+          [phoneValidation]="true"
+          [separateDialCode]="separateDialCode"
+          [numberFormat]="PhoneNumberFormat.National"
+          [customPlaceholder]=""
+          name="phone"
+          formControlName="phone"
+        >
+        </ngx-intl-tel-input>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label class="col-form-label" for="from">From Date</label>
+      <input type="date" class="form-control" id="from" style="height: 44px">
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label class="col-form-label" for="to">To Date</label>
+      <input type="date" class="form-control" id="to" style="height: 44px">
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label class="col-form-label" for="status">Status</label>
+      <select class="form-control"  id="status" style="height: 44px;">
+        <option>open</option>
+        <option>checked</option>
+        <option>verified</option>
+        <option>payout request sent</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row content">
+  <div class="col-sm-8">
+    <div class="table-responsive payoutlistTable">
+      <table class="table">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+        <tr>
+          <th>Req Date</th>
+          <th>Req.No</th>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th class="alignRight">Balance</th>
+          <th class="alignRight">Req Amount</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+        <tr>
+          <td>12/02/2022</td>
+          <td>111</td>
+          <td>Jhon</td>
+          <td>8938589288</td>
+          <td class="alignRight">1233</td>
+          <td class="alignRight">980</td>
+          <td>open</td>
+        </tr>
+        <tr>
+          <td>13/04/2022</td>
+          <td>112</td>
+          <td>Peter</td>
+          <td>9244224922</td>
+          <td class="alignRight">2342</td>
+          <td class="alignRight">1233</td>
+          <td>checked</td>
+        </tr>
+        <tr>
+          <td>05/12/2021</td>
+          <td>113</td>
+          <td>Horry</td>
+          <td>9274287938</td>
+          <td class="alignRight">1234</td>
+          <td class="alignRight">500</td>
+          <td>verfied</td>
+        </tr>
+        <tr>
+          <td>11/08/2021</td>
+          <td>114</td>
+          <td>Alan</td>
+          <td>7342034823</td>
+          <td class="alignRight">893</td>
+          <td class="alignRight">124</td>
+          <td>payout request sent</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <p class=""><label>Name : </label><span>&nbsp;Vikram</span></p>
+    <p class=""><label>UPI Handle : </label><span>&nbsp;</span></p>
+    <p class=""><label>IFSC Code : </label><span>&nbsp;</span></p>
+    <p class=""><label>Account Number : </label><span>&nbsp;</span></p>
+    <p class=""><label>Status : </label><span>&nbsp;Open</span></p>
+    <div class="form-group">
+      <label class="col-form-label " for="remark">Remarks</label>
+      <input type="text" class="form-control" id="remark" >
+    </div>
+    <div class="form-group">
+      <label class="col-form-label " for="Assigned">Assigned To</label>
+      <select class="form-control" id="Assigned">
+        <option>Admin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label " for="amounttopay">Amount To Pay</label>
+      <input type="text" class="form-control" id="amounttopay">
+    </div>
+    <div class="form-group">
+      <label class="col-form-label " for="otp">OTP</label>
+      <input type="text" class="form-control" id="otp">
+    </div>
+    <div>
+      <button class="btn rightPos" style="margin-bottom: 5px;">Checked</button>
+    </div>
+    <p>&nbsp;</p>
+  </div>
+</div>

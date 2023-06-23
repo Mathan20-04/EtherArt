@@ -1,0 +1,17 @@
+<div class="row" class="marginZero">
+    <div>
+        <p class="leftSide" style="font-size: 20px">Comment on ticket - {{ticket.ticket_id}}</p>
+        <span (click)="dialogClose()" class="material-icons icon rightSide" matTooltipPosition="above" mat-raised-button matTooltip="close">close</span>
+    </div>
+    <br>
+    <div class="form-group">
+    <textarea [(ngModel)]="comments" class="form-control" cols="30" id="description" name="description" placeholder="How can we help you?"
+              rows="10"></textarea>
+    </div>
+    <br>
+    <div>
+        <p class="leftSide"></p>
+        <button (click)="addTicketActivity()" [disabled]="comments == '' " class="btn comment rightSide"><i *ngIf="commentBtn" class="fa fa-spinner fa-spin"></i>  Add comment</button>
+        <button (click)="backToTicketList()" class="btn btn-default rightPos goback">Back to ticket list</button>
+    </div>
+</div>

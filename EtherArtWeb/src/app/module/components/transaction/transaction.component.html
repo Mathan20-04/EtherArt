@@ -1,0 +1,84 @@
+<h2><span class="material-icons inline-icon" style="font-size: 40px;">account_balance_wallet</span> Wallet</h2>
+<br>
+<div class="reward">
+  <h4>Reward Balance <span class="rewardBalance">:&nbsp; Rs.750</span></h4>
+  <h4>Cash Balance <span class="cashBalance">: &nbsp;Rs.450</span></h4>
+</div><br>
+<div class="">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#purchase">My purchase</a></li>
+    <li><a data-toggle="tab" href="#sale">My Sale</a></li>
+  </ul>
+  <br><br>
+  <div class="tab-content">
+    <div id="purchase" class="tab-pane fade in active tableMargin">
+      <div class="table-responsive scroll">
+        <table class="table ">
+          <thead style="position: sticky;top: 0;z-index: 1;">
+          <tr>
+            <th>Date</th>
+            <th>Item</th>
+            <th class="price">Price <br>(Rs)</th>
+            <th class="price">Rewards <br>(Rs)</th>
+            <th class="price">Paid <br>(Rs)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let order of purchase;let i = index">
+            <td>{{order.orderDate}}</td>
+            <td>
+              <img [src]="order.itemURL"  style="height:30px;" class="imgcollection">
+            </td>
+            <td class="price">
+              {{order.price}}
+            </td>
+            <td class="price">
+              {{order.cashback}}
+            </td>
+            <td class="price">
+              {{order.payed}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="sale" class="tab-pane fade tableMargin">
+      <div class="table-responsive scroll">
+        <table class="table">
+          <thead style="position: sticky;top: 0;z-index: 1;">
+            <tr>
+              <th>Date</th>
+              <th>Item</th>
+              <th class="price">Sold<br>(Rs)</th>
+              <th class="price">Service<br>Fees</th>
+              <th class="price">Purchased<br>(Rs)</th>
+              <th class="price">Profit<br>(Rs)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of sale;">
+              <td>{{order.saleDate}}</td>
+              <td>
+                <img [src]="order.url"  style="height:30px;" class="imgcollection">
+              </td>
+              <td class="price">
+                {{order.salePrice}}
+              </td>
+              <td class="price">
+                {{order.purchasePrice}}
+              </td>
+              <td class="price">
+                {{order.purchasePrice}}
+              </td>
+              <td class="price">
+                {{order.profit}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

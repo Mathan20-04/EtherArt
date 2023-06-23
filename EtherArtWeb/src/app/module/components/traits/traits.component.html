@@ -1,0 +1,31 @@
+<div>
+  <p class="leftPos"></p>
+  <span (click)="close()" class="material-icons icon rightPos" matTooltipPosition="above" mat-raised-button matTooltip="Close">close</span>
+</div>
+<div>
+  <p class="leftPos" style="font-size: 20px;">Rarity</p>
+</div>
+<p> This NFT is unique and is made up of following traits.
+  The list shows what % of collection has that specific trait.
+  For eg, trait (Modi Kurta) 5.3% means in our entire collection only 5.3% of NFT has this specific trait (Modi Kurta).
+</p>
+<div  class="table-responsive traitTable">
+  <table #scrollMe class="table">
+    <thead style="position: sticky;top: 0;z-index: 1;">
+    <tr>
+      <th>Traits</th>
+      <th class="alignCenter">Value</th>
+      <th class="alignRight">Percentage</th>
+      <!-- <th class="alignRight">Score</th> -->
+    </tr>
+    </thead>
+    <tbody class="modalTraits">
+    <tr *ngFor="let trait of traitItem">
+      <td>{{trait.showTitle}}</td>
+      <td class="alignCenter"><img [src]="trait.url_700" [alt]="trait.part_title" width="50px" height="50px"></td>
+      <!-- <td class="alignRight">{{trait.rarity_count}}</td> -->
+      <td class="alignRight">{{trait.rarity_percent | number : '1.2-2'}}%</td>
+    </tr>
+    </tbody>
+  </table>
+</div><br>

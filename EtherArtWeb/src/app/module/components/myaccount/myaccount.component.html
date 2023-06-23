@@ -1,0 +1,67 @@
+<div class="">
+  <div *ngIf="!isMobile" class="col-lg-2 col-sm-12 col-md-2">
+    <ul class="nav nav-tabs-dropdown nav-stacked" role="tablist">
+      <li class="active"><a data-toggle="tab" href="#profile" role="tab"><span
+        class="material-icons inline-icon">person</span> Profile</a></li>
+      <li><a data-toggle="tab" href="#myreferal" role="tab"><span class="material-icons inline-icon">groups</span> Tribe</a>
+      </li>
+      <li><a data-toggle="tab" href="#wallet" role="tab"><span
+        class="material-icons inline-icon">account_balance_wallet</span> Wallet</a></li>
+      <li><a data-toggle="tab" href="#collectables" role="tab"><span
+        class="material-icons inline-icon">collections</span> Collectables</a>
+        <!-- <li><a data-toggle="tab" role="tab" href="#mybid"><span class="material-icons inline-icon">gavel</span> Bid</a> -->
+      <li><a data-toggle="tab" href="#paymentMethod" role="tab"><span
+        class="material-icons inline-icon">account_balance</span> Payment Method</a>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="isMobile">
+    <mat-tab-group animationDuration="0ms"  [selectedIndex]="selected.value">
+      <mat-tab label="My Profile">
+        <div class="row marginLR marginUp">
+          <app-profile></app-profile>
+        </div>
+      </mat-tab>
+      <mat-tab label="My Referal">
+        <div class="row marginLR marginUp">
+          <app-myreferral></app-myreferral>
+        </div>
+      </mat-tab>
+      <mat-tab label="My Wallet">
+        <div class="row marginLR marginUp">
+          <app-wallet></app-wallet>
+        </div>
+      </mat-tab>
+      <mat-tab label="My Collectables">
+        <div class="row marginLR marginUp">
+          <app-collectables></app-collectables>
+        </div>
+      </mat-tab>
+      <mat-tab *ngIf="showPayMethod" label="My Payment Method">
+        <div class="row marginLR marginUp">
+          <app-payment-method></app-payment-method>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div *ngIf="!isMobile " class="col-lg-10 col-sm-12 col-md-10" style="height: 86vh;position:relative; ">
+    <div class="tab-content" style="max-height:100%;overflow-y:auto; overflow-x: hidden">
+      <div [class]="profileTab" id="profile">
+        <app-profile></app-profile>
+      </div>
+      <div [class]="myreferalTab" id="myreferal">
+        <app-myreferral></app-myreferral>
+      </div>
+      <div [class]="walletTab" id="wallet">
+        <app-wallet></app-wallet>
+      </div>
+      <div [class]="collectableTab" id="collectables">
+        <app-collectables></app-collectables>
+      </div>
+      <div *ngIf="showPayMethod" [class]="paymentMethodTab" id="paymentMethod">
+        <app-payment-method></app-payment-method>
+      </div>
+    </div>
+  </div>
+
+</div>

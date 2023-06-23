@@ -1,0 +1,36 @@
+<footer class="site-footer foot">
+  <div class="foot footalign">
+    <div class="row">
+      <a routerLink="/dashboard"><h4 style="margin-left: 20px;" *ngIf="!isMob"><img src="assets\logoWhite.svg" alt="" width="30px" height="30px" class="logo"> EtherArt</h4></a>
+      <br>
+      <div style="margin-left: 20px;">
+        <div *ngIf="isMob" class="col-lg-1 col-md-1 col-xs-12 footer-links"> <a routerLink="/dashboard"><h4><img src="assets\logoWhite.svg" alt="" width="30px" height="30px" class="logo"class="logo"> EtherArt</h4></a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/about">About Us</a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/contact">Contact Us</a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/privacy">Privacy Policy</a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/refund">Refund Policy</a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/tandc">T & C</a></div>
+        <div class="col-lg-2 col-md-1 col-xs-12 footer-links"><a routerLink="/faq">FAQs</a></div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="footalign">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by EtherArt</p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+<!--          <li><a class="google" href="#"><i class="fa fa-google"></i></a></li>-->
+          <li><a class="facebook" href="https://www.facebook.com/EtherArt-107184775296710" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li><a class="twitter" href="https://twitter.com/EtherArtAI" target="_blank" matTooltipPosition="above" mat-raised-button matTooltip="Follow Us On Twitter" ><i class="fa fa-twitter"></i></a></li>
+          <li><a class="whatsapp" href="#" ><i class="fa fa-whatsapp"></i></a></li>
+<!--          <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>-->
+<!--          <li><a class="youtube" href="#"><i class="fa fa-youtube"></i></a></li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

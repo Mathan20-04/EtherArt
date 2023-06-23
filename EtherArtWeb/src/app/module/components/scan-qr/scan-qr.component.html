@@ -1,0 +1,17 @@
+<div>
+  <p class="leftPos"></p>
+  <span (click)="close()" class="material-icons icon rightPos" matTooltipPosition="above" mat-raised-button matTooltip="Close">close</span>
+</div>
+<div class="row alignCenter">
+  <h3>Scan QR or Tap to Pay</h3>
+  <h3>Using Your
+    <img height="30px" src="assets/gpay.svg" width="30px" class="inline-icon" (click)="openGPay()">
+    <img height="30px" src="assets/phonepe.svg" width="30px" class="inline-icon">
+    <img height="30px" src="assets/paytm.svg" width="30px" class="inline-icon">
+    <img height="30px" src="assets/amazonpay.svg" width="30px" class="inline-icon">
+  </h3>
+  <br>
+  <img width="200px" height="200px" [src]="obj.qrCode"/>
+  <br><br><br>
+  <h4>Total Amount To Pay {{obj.totalAmount}}</h4>
+</div>

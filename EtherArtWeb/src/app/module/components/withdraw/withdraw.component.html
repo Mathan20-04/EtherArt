@@ -1,0 +1,134 @@
+<div class="row marginZero">
+  <div class="col-md-1 col-sm-1 col-sm-1"></div>
+  <div class="col-md-4 col-xs-12 col-sm-4 col-lg-4">
+    <div class="card">
+      <div class="card-head">
+        <div class="alignCenter">
+          <h5 class="leftSide">Redeem Your Cash</h5>
+        </div>
+      </div>
+      <div class="widthdrawContainer">
+        <p>&nbsp;</p>
+        <div *ngIf="profileCompleted == false">
+          <h5 class="leftSide">Please Add your all details in Profile <a routerLink="/myaccount"> here</a></h5>
+        </div>
+        <div  *ngIf="profileCompleted == true">
+          <h5 class="leftSide">Profile Completed <img height="20px" src="assets/success.png" width="20px"></h5>
+        </div>
+        <div>
+          <h5 class="leftSide" *ngIf="paymentMethod == null ">Please Add Your Payment Method <a (click)="openPaymentMethod()"> here</a></h5>
+        </div>
+        <div>
+          <h5 class="leftSide" *ngIf="paymentMethod != null && paymentMethod.length > 0">Payment Method Completed  <img height="20px" src="assets/success.png" width="20px"></h5>
+        </div>
+        <div *ngIf="paymentMethod != null && paymentMethod.length > 0" class="form-group" style="margin-right: 10px;margin-left: 10px;">
+          <div class="row">
+            <label class="col-sm-6" for="paymethod">Choose Payment Method</label>
+            <span class="col-sm-6">
+              <select [(ngModel)]="pay_id" id="paymethod"  class="form-control">
+                <option  *ngFor="let paymethod of paymentMethod; let i = index" [ngValue]="paymethod.payment_method_id" option>
+                  <span *ngIf="paymethod.upi_id!=''">{{paymethod.upi_id}}</span>
+                  <span *ngIf="paymethod.account_number!=''">{{paymethod.account_number}}</span>
+                  <span *ngIf="paymethod.card_number!=''">{{paymethod.card_number}}</span>
+                </option>
+              </select>
+            </span>
+          </div>
+        </div>
+        <div>
+          <h5 class="leftSide ">Amount Available : {{cashAvailable}}</h5>
+        </div>
+        <div>
+          <h5 class="leftSide">Enter Amount to Withdraw</h5>
+        </div>
+        <div class="form-group" style="float: left;">
+          <input [(ngModel)]="amount" type="number" class="form-control"style="width: 130px; margin-left: 10px" id="" [disabled]="paymentMethod == null" >
+        </div>
+        <div class="form-group">
+          <button class="btn "[disabled]="paymentMethod == null" style="margin-left: 10px" (click)="makePayoutRequest()">Make Request</button>
+        </div>
+
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12 col-sm-6 col-lg-6">
+    <div class="table-responsive widthdrawtable">
+      <table class="table">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+        <tr>
+          <th>Date</th>
+          <th>Withdraw Id</th>
+          <th class="alignRight">Amount</th>
+          <th>Status</th>
+          <th>Transactions</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of payOutRequestList">
+          <td>{{showDateYYYY(item.created_on,'-')}}</td>
+          <td>{{item.request_id}}</td>
+          <td class="alignRight">{{item.amount}}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.reference_object}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-1 col-sm-1 col-sm-1"></div>
+</div>
+<div class="row marginZero">
+  <h3 style="margin-left: 20px">Sold History</h3><br>
+  <div *ngFor="let item of sale" class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <h6 class="leftSide titleName">{{item.item_id}}</h6>
+          <img class="leftSide tagIcon" [src]="iconSrc" width="60px" height="60px">
+          <h6 class="rightSide titleName">{{item.saleDate}}</h6>
+        </div>
+      </div>
+      <div class="imagecontainer">
+        <img [src]="item.url" alt="EtherArt" style="height:300px;width: 100%">
+      </div>
+      <div class="walletCard-body">
+        <div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+              <tr>
+                <td>Sold </td>
+                <td class="alignRight">{{item.salePrice}}</td>
+                <td>Purchased</td>
+                <td class="alignRight">{{item.purchasePrice}}</td>
+              </tr>
+              <tr>
+                <td matTooltipPosition="above" mat-raised-button matTooltip="Commission to EtherArt Refer T&C of Secondary Sale">Commission</td>
+                <td class="alignRight">{{item.commission}}</td>
+                <td>
+                  <span *ngIf="item.salePrice >= item.purchasePrice">Profit</span>
+                  <span *ngIf="item.salePrice < item.purchasePrice">Loss</span>
+                </td>
+                <td class="alignRight">{{item.profit}}</td>
+              </tr>
+              <tr>
+                <td  matTooltipPosition="above" mat-raised-button matTooltip="Sold - Commission">Earning</td>
+                <td class="alignRight">{{item.salePrice - item.commission}}</td>
+                <td>
+                  <span  *ngIf="item.salePrice >= item.purchasePrice">Profit%</span>
+                  <span  *ngIf="item.salePrice < item.purchasePrice">Loss%</span>
+                </td>
+                <td *ngIf="item.salePrice >= item.purchasePrice" class="alignRight">{{((item.salePrice - item.purchasePrice) / item.purchasePrice)*100}}</td>
+                <td *ngIf="item.salePrice < item.purchasePrice" class="alignRight">{{((item.purchasePrice  - item.salePrice) / item.purchasePrice)*100}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+

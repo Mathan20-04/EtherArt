@@ -1,0 +1,47 @@
+<div>
+    <p class="leftSide" style="font-size: 20px">Ticket - {{ticket.ticket_id}} &nbsp; {{ticket.ticket_title}}</p>
+    <span (click)="dialogClose()" class="material-icons icon rightSide" matTooltipPosition="above" mat-raised-button matTooltip="close">close</span>
+</div>
+<div class="row">
+    <div style="height: 60vh;position:relative; ">
+        <div #scrollMe style="max-height:100%;overflow-y:auto; overflow-x: hidden">
+            <div *ngFor="let activity of Activities">
+                <div class="row" *ngIf="activity.source == 'CONSUMER'">
+                    <div class="col-sm-9 col-xs-9">
+                        <p class="messageTime" *ngIf="activity.created_by == null">{{activity.created_by}} on {{activity.created_on}}</p>
+                        <p class="messageTime" *ngIf="activity.created_by != null">{{activity.created_by.toString(16)}} on {{activity.created_on}}</p>
+                        <div class="ticketReceiveMessage">
+                            <p class="ticketRecMes">
+                                {{activity.comments}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-3"></div>
+                </div>
+                <div class="row" *ngIf="activity.source == 'ADMIN'">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9">
+                        <p class="messageTime" *ngIf="activity.created_by == null">{{activity.created_by}} on {{activity.created_on}}</p>
+                        <p class="messageTime" *ngIf="activity.created_by != null">{{activity.created_by.toString(16)}} on {{activity.created_on}}</p>
+                        <div class="ticketSendMessage">
+                            <p class="ticketSenMess">
+                                {{activity.comments}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+<div class="row" class="marginZero">
+    <div class="form-group">
+    <textarea [(ngModel)]="comments" class="form-control" id="description" name="description" placeholder="How can we help you?"
+              rows="3"></textarea>
+    </div>
+</div>
+<div>
+    <p class="leftPos"></p>
+    <button (click)="addTicketActivity()" [disabled]="comments == ''" class="btn comment rightPos"><i *ngIf="commentBtn" class="fa fa-spinner fa-spin"></i>  comment on ticket</button>
+    <button (click)="backToTicketList()" class="btn btn-default rightPos goback">Back to ticket list</button>
+</div>

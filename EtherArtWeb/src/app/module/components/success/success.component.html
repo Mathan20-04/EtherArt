@@ -1,0 +1,119 @@
+<div *ngIf="sessionId == ''">
+  <h3 class="marginLR">Something Went Wrong..</h3>
+</div>
+<div *ngIf="!confirmDone" style="text-align: center">
+  <h4 class="leftSide">Checking with PG for confirming the order</h4>
+  <div *ngIf="!authDone" class="dot-flashing leftSide" style="margin-left: 30px"></div>
+  <img *ngIf="authDone" class="leftSide" height="30px" src="assets/success.png" width="30px">
+</div>
+<div *ngIf="authDone && !confirmDone" style="text-align: center">
+  <h4 class="leftSide">Confirming the order</h4>
+  <div class="dot-flashing leftSide" style="margin-left: 30px"></div>
+</div>
+<div *ngIf="confirmDone && !error" class="detail">
+  <div class="alignCenter">
+    <h3><img height="40px" src="assets/success.png" width="40px"> Your Payment Is Successful</h3>
+  </div>
+  <br>
+  <div class="row" class="marginZero">
+    <div *ngIf="!isMob" class="col-sm-2 col-lg-2  "></div>
+    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="card">
+        <div class="card-head">
+          <h4 class="leftSide titleName">NFT #: {{nftNum}}</h4>
+        </div>
+        <div class="paidImageContainer">
+          <img *ngIf="!isMob" [src]="imageURL+'&s=700'" alt="EtherArt" class="paidImage" style="width: 100%">
+          <img *ngIf="isMob" [src]="imageURL+'&s=700'" alt="EtherArt" class="paidImage" style="width: 100%">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5 col-lg-5 col-md-5"><br>
+      <div>
+        <div>
+          <p class="leftPos detailName"><label>Collection Name : </label></p>
+          <p class="rightPos detailName">{{collName}}</p>
+        </div>
+        <div>
+          <p class="leftPos detailName"><label>Item Number : </label></p>
+          <p class="rightPos detailName">{{nftNum}}</p>
+        </div>
+        <div>
+          <!-- <h5 class="rightPos">BTC {{btcValue}}</h5> -->
+          <!-- <h5 class="leftPos"><a href="#" target="_blank"  matTooltipPosition="above" mat-raised-button matTooltip="Etherscan is a block explorer and analytics platform that allows you to access details on any Ethereum blockchain transactions that are pending or confirmed">
+            <img height="20px" src="assets/etherscan.svg" width="20px"> EtherScan</a>
+          </h5> -->
+        </div>
+        <div>
+          <p class="leftPos detailName"><label>Transaction Id : </label></p>
+          <p class="rightPos detailName">{{txnId}}</p>
+        </div>
+        <div>
+          <p class="leftPos detailName"><label>Owner Name : </label></p>
+          <p class="rightPos detailName">{{ownerName}}</p>
+        </div>
+      </div>
+      <div>
+        <p>&nbsp;</p>
+        <p style="font-size: 21px;font-weight: 500">Hurray!</p>
+        <p style="font-size: 19px;font-weight: 400">You just purchased rare piece of Indian History!</p>
+        <p style="font-size: 19px;font-weight: 400">Check Your Collectables <a (click)="openCollectables()">Here</a></p>
+        <p style="font-size: 19px;font-weight: 400">Share this with your friends to earn 50 Tribe Rewards for each friend who joins EtherArt</p>
+        <div style="text-align:left">
+          <a *ngIf="!isMob" href="https://web.whatsapp.com/send?text={{urlReferral}}" target="_blank">
+            <img src="assets\whatsapp.svg"  class="leftSide" matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share"  alt="" width="40" height="40" id="share">
+          </a>
+          <a *ngIf="isMob" [href]="shareOnWhatsappApp" data-text="Share on Whatsapp App" target="_blank" class="wa_btn wa_btn_s" >
+            <img src="assets\whatsapp.svg"  class="leftSide" matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share" width="40" height="40" alt="" id="wshare">
+          </a>
+          <a data-text="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text={{urlReferral}}">
+            <img src="assets/iconsTwitter.svg" matTooltipPosition="above" mat-raised-button matTooltip="Twitter Share" alt="twitter" class="leftSide" width="40" height="40">
+          </a>
+          <a><img src="assets/copylink.png" [cdkCopyToClipboard]="urlReferral" matTooltipPosition="above" mat-raised-button matTooltip="Copy Link" (click)="copyLink()" class="leftSide" width="40" height="40"></a>
+        </div>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+    <!-- <div class="col-sm-3 col-lg-3 col-md-3">
+      <div class="card">
+        <div class="card-head">
+          <h5 class="leftPos titleName">You are one step closer to get Reserved Collection</h5>
+        </div>
+        <div class="oneStepCard">
+          <div style="margin: 10px;">
+            <div class="alignCenter">
+              <h5>Target Scrore xxx</h5>
+              <h5>Your Score yyy</h5>
+            </div>
+            <h5>#Tribes</h5>
+            <div class="progress">
+              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="52"
+                   class="progress-bar" role="progressbar" style="width:52%">
+                52%
+              </div>
+            </div>
+            <h5>#Tribes Purchase</h5>
+            <div class="progress">
+              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="75"
+                   class="progress-bar" role="progressbar" style="width:75%">
+                75%
+              </div>
+            </div>
+            <h5>#your Purchase</h5>
+            <div class="progress">
+              <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="34"
+                   class="progress-bar" role="progressbar" style="width:34%">
+                34%
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div *ngIf="!isMob" class="col-sm-1 col-lg-1 col-md-1"></div>
+  </div>
+</div>
+<div *ngIf="error">
+  <h3 class="marginLR">{{errorMsg}}</h3>
+</div>

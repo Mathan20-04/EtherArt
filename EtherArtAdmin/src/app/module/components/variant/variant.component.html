@@ -1,0 +1,66 @@
+<div *ngIf="!loading">
+    <h3 style="text-align: center;">{{heading}}</h3>
+    <div class="row" style="margin: 0;">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div *ngIf="collectionItem != null && collectionItem.title != null" class="form-group form-inline">
+                <label for="collection">Collection</label><br>
+                <input [(ngModel)]="collectionItem.title"  type="text" class="form-control" id="collection" style="width: 300px;"  readonly>
+            </div>
+            <div *ngIf="partItem != null && partItem.title != null " class="form-group form-inline">
+                <label for="part">Part</label><br>
+                <input [(ngModel)]="partItem.title" type="text" class="form-control" id="part" style="width: 300px;"readonly><br>
+            </div>
+            <div class="form-group form-inline">
+                <label for="varImage" class="required-field">Variation Image</label><br>
+                <input  type="file" class="form-control"  id="varImage" (change)="upload($event)" style="width: 300px;height: 40px;"  [disabled]="imgInput" required><br><br>
+                <img [src]="imageUrl" alt="EtherArt" width="200px" height="200px;">
+            </div>
+            <br>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="form-group form-inline">
+                <label for="repImage" class="required-field">Representational Image</label>
+                <input  type="file" class="form-control"  id="repImage" (change)="uploadRep($event)" style="width: 300px;height: 40px;"  [disabled]="imgInput" required><br><br>
+                <img [src]="repImageUrl" alt="EtherArt" width="200px" height="200px;">
+            </div>
+            <div class="form-group form-inline">
+                <label for="title" class="required-field">Title</label><br>
+                <input type="text" [(ngModel)]="title" class="form-control" id="title" style="width: 300px;" required>
+            </div>
+            <div class="form-group form-inline">
+                <label for="category">Category</label><br>
+                <select [(ngModel)]="selectedCategoryId"  class="form-control" id="category" style="width: 300px;" disabled>
+                    <option *ngFor="let category of categoryList; let i = index" [selected]="category.category_id == selectedCategoryId" option>{{category.category_name}}</option>
+                </select>
+            </div>
+            <div class="form-group form-inline">
+                <label for="subcategory">SubCategory</label><br>
+                <select  (change)="change($event.target.value)" [(ngModel)]="selectedSubCategoryId"  class="form-control" id="subcategory" style="width: 300px;">
+                    <option *ngFor="let subCat of subCategoryList; let i = index" value="{{subCat.category_id}}" [selected]="subCat.sub_category_id == selectedSubCategoryId" option>{{subCat.sub_category_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Metadata</label><br>
+            <div style="height:65vh;position:relative; ">
+                <div style="max-height:100%;overflow-y:auto; overflow-x: hidden">
+                    <div *ngFor="let key of metadataList;let i = index" style="margin-left: 20px">
+                        <div class="form-group form-inline">
+                            <label for="color">{{key.meta_key}}</label><br>
+                            <input [(ngModel)]="value[i]" type="text" class="form-control" id="color" style="width: 300px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="form-group form-inline" >
+                <button class="btn btn-ether btn-info addBtn"(click)="addVariation()" [disabled]="add" >Add</button>
+                <button class="btn btn-ether btn-success updateBtn" (click)="updateVariation()" [disabled] = "update">Update</button>
+                <button class="btn btn-ether btn-danger deleteBtn" (click)="deleteVariation()"  [disabled] = "delete">Delete</button>
+                <button class="btn btn-default btn-ether cancelBtn"  routerLink="/collection/">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" class="spin">
+    <mat-spinner></mat-spinner>
+</div>

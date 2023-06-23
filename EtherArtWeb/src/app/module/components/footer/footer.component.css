@@ -1,0 +1,14 @@
+
+.whatsapp:hover {
+  background-color:	#25D366;
+}
+.instagram:hover {
+  background: linear-gradient(to bottom left, #9900cc 22%, #ff9933 82%);
+}
+.google:hover {
+  background-color: #db3236;
+}
+.youtube:hover {
+  background-color: #FF0000;
+}
+

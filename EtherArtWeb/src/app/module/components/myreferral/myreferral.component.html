@@ -1,0 +1,52 @@
+<p style="font-size:25px; font-weight: 500"><span class="material-icons inline-icon" style="font-size: 40px;">groups</span> Tribe</p>
+<hr>
+<p style="font-size: 19px;font-weight: 400">Tribe Members : <span>{{list.length}}</span></p>
+<p style="font-size: 19px;font-weight: 400">Refer friends and earn more Rewards!
+<span style="text-align:left">
+  <a *ngIf="!isMob" href="https://web.whatsapp.com/send?text={{urlReferral}}" target="_blank">
+    <img src="assets\whatsapp.svg"  class="leftSide"  matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share"  alt="" width="30" height="30" id="share">
+  </a>
+  <a *ngIf="isMob" [href]="shareOnWhatsappApp" data-text="Share on Whatsapp App" target="_blank" class="wa_btn wa_btn_s" >
+    <img src="assets\whatsapp.svg" class="leftSide" matTooltipPosition="above" mat-raised-button matTooltip="WhatsApp Share" width="30" height="30" alt="" id="wshare">
+  </a>
+  <a data-text="Share on Twitter" target="_blank" href="https://twitter.com/intent/tweet?text={{urlReferral}}">
+    <img src="assets/iconsTwitter.svg" matTooltipPosition="above" mat-raised-button matTooltip="Twitter Share" alt="twitter" class="leftSide" width="30" height="30">
+  </a>
+  <a><img src="assets/copylink.png" [cdkCopyToClipboard]="urlReferral" matTooltipPosition="above" mat-raised-button matTooltip="Copy Link" (click)="copyLink()" class="leftSide" width="30" height="30"></a>
+</span>
+</p>
+<h3>Rewards</h3>
+<div *ngIf="snapshot != null" class="reward">
+  <p style="font-size: 19px;font-weight: 400">Earned <span class="earned">: &nbsp;{{snapshot.earned}}</span></p>
+  <p style="font-size: 19px;font-weight: 400">Redeemed <span class="redeem">: &nbsp;{{snapshot.redeemed}}</span></p>
+  <p style="font-size: 19px;font-weight: 400">Remainings <span class="remaining">: &nbsp;{{snapshot.remaining}}</span></p>
+</div><br>
+<h3 *ngIf="list.length != 0">Tribe Details</h3>
+<br>
+<div *ngFor="let item of list;let i = index" class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <h6 class="leftSide titleName">{{item.first_name}} {{item.last_name}}</h6>
+        <h6 class="rightSide titleName">{{showDate(item)}}</h6>
+      </div>
+    </div>
+    <div class="imagecontainer">
+      <img src="assets/person_black.svg" alt="EtherArt" style="width: 100%">
+    </div>
+    <div class="tribe-body">
+      <div>
+        <h6 class="leftSide titleName">Referral Reward</h6>
+        <h6 class="rightSide titleName">{{item.referral_bonus}}</h6>
+      </div>
+      <div>
+        <h6 class="leftSide titleName">Purchase Reward</h6>
+        <h6 class="rightSide titleName">{{item.buy_bonus}}</h6>
+      </div>
+      <div>
+        <h6 class="leftSide titleName">Total</h6>
+        <h6 class="rightSide titleName">{{item.referral_bonus + item.buy_bonus}}</h6>
+      </div>
+    </div>
+  </div>
+</div>

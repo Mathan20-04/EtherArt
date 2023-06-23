@@ -1,0 +1,39 @@
+<div class="scrollList">
+  <div class="container">
+    <h4>Sales Report</h4>
+    <div class="table-responsive scroll">
+      <table class=" table table-bordered ">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+          <tr>
+            <th>Sl No</th>
+            <th>First Name</th>
+            <th>Last name</th>
+            <th>Mobile</th>
+            <th>City</th>
+            <th>Date Joined</th>
+            <th># Purchases</th>
+            <th>Purchase Amount</th>
+            <th># Sales</th>
+            <th>Sale Amount</th>
+            <th>Profit</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr (click)="clicked(user)" *ngFor="let user of salesList;let i = index">
+              <td>{{i+1}}</td>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.mobile}}</td>
+              <td>{{user.city}}</td>
+              <td>{{user.created_on}}</td>
+              <td>{{user.num_purchases}}</td>
+              <td>{{user.purchase_amount}}</td>
+              <td>{{user.num_sales}}</td>
+              <td>{{user.sale_amount}}</td>
+              <td>{{user.profit}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

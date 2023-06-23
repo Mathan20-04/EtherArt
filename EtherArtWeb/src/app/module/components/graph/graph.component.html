@@ -1,0 +1,17 @@
+<div>
+  <p class="headName leftSide">BTC vs SENSEX</p>
+  <div class="dropdown rightSide">
+    <span class="material-icons dropdown-toggle inline-icon pointer icon" style="font-size: 35px"  matTooltipPosition="above" mat-raised-button matTooltip="Filter"  data-toggle="dropdown">filter_alt</span>
+    <ul class="dropdown-menu graphFilter  dropdown-left-manual">
+      <li><a class="drop" (click)="filter(712)">2 Year</a></li>
+      <li><a class="drop" (click)="filter(356)">1 Year</a></li>
+      <li><a class="drop" (click)="filter(178)">6 Month</a></li>
+      <li><a class="drop" (click)="filter(92)">3 Month</a></li>
+      <li><a class="drop" (click)="filter(31)">1 Month</a></li>
+    </ul>
+  </div>
+</div>
+<div  class="chart-container">
+  <canvas height="150px" id="canvas"></canvas>
+</div>
+<br>

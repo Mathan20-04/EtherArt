@@ -1,0 +1,34 @@
+<div [ngClass]="mode">
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <h2>Jai Bharath</h2>
+      <p style="font-size: 21px;"><i><span style="color:  #00a2ed">One Nation, One Emotion, One Identity</span></i></p><br>
+      <h3>About Us</h3><br>
+      <p >We are Entrepreneurs, Artists, Engineers, and Farmers celebrating the <i style="font-weight: 500"><span style="color: #00a2ed">'75th anniversary of India’s Independence'.</span></i> We have spent the last year designing unique digital collectables (NFTs) that showcase India’s victories so all of us can share them with the world on this special occasion!</p>
+      <p >For thousands of years, India has given precious gifts to humankind, including Yoga and the Number Zero…even the game of Chess was born here!</p>
+      <p ><span style="font-weight: 500"> Without these marvels, the world today wouldn’t be the same. </span>Fast forward to this century, under the leadership of Prime Minister Modiji, the country has united to achieve unthinkable social and economic progress for India’s 1.3 billion population.</p>
+    </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <div style="text-align: center;">
+        <img *ngIf="!isMob" src="assets/aboutUs.png" alt="EtherArt" style="width:550px;height: 550px;">
+        <img *ngIf="isMob" src="assets/aboutUs.png" alt="EtherArt" style="width:350px;height:350px;">
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <p>There is no better example than the <span style="font-weight: 500"> 200+ crores (2 Billion+) Covid vaccinations administrated as of July 2022</span> by healthcare workers who reached remote areas such as Nagaland, Manipur, Andaman and Nicobar, trekking for hours on foot (and on ponies!) to take care of nomadic tribes in the mountains. <span style="font-weight: 500">We salute the healthcare workers of India!</span> </p>
+    <p><span style="font-weight: 500">These victories stretch to the farmland where 9 crores (90 million) clean cooking gas connections,</span> such as LPG, were made available to rural households which were otherwise using traditional cooking fuels such as firewood, coal and cow-dung cakes. </p>
+    <p>And across India, bank accounts have been set up for over  <span style="font-weight: 500">45 crores (450 million) </span> people who previously never had one – a giant leap for financial inclusion!</p>
+    <p>We are proud to create NFTs to celebrate India’s historic social and economic victories. Today we are releasing our first NFT collection <span style="font-weight: 500">“200+ Crore Vaccination”</span> to honor our country’s fight against the pandemic.</p>
+    <p>Each NFT is unique. You could collect these NFTs and pass them onto your next generation, or trade them should you desire!</p>
+    <p>We invite you to own a piece of Indian history by purchasing your first NFT  for just Rs 550 (applicable to Indian residents with 200 Tribe Rewards).
+    </p><br>
+    <p>Regards,</p>
+    <p>Team EtherArt</p><br>
+    <h3><i><span style="color:  #00a2ed">One Nation, One Emotion, One Identity</span></i></h3>
+  </div>
+  <br>
+</div>
+
+<app-footer></app-footer>

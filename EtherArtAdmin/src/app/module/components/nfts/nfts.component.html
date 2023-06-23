@@ -1,0 +1,31 @@
+<div *ngIf="loading" class="spin">
+    <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!loading">
+    <div *ngIf="list != null">
+        <div *ngFor="let item of list ;let i = index"  class="col-md-4 col-xs-12 col-sm-6 col-lg-3 ">
+            <div class="card">
+                <div class="card-head">
+                    <h6 class="leftSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="item id">{{item.detail_id}}</h6>
+                    <i (click)="preview(item)" matTooltipPosition="above" mat-raised-button matTooltip="preview" class="fa rightSide preview"><span class="material-icons">visibility</span>
+                    </i>
+                </div>
+                <div class="imagecontainer">
+                    <img [src]="item.url+'&s=700'" alt="EtherArt" style="width: 100%;">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="leftSide titleName">Rarity</p>
+                        <p class="rightSide titleName" style="margin-bottom: 1px">
+                            {{item.rarity_percent}}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="list == null">
+        <div class="row" style="margin: 0">
+            <h4 style="margin-left:20px ">No Items of Combination <a (click)="goBack()">check other rarity</a></h4>
+        </div>
+    </div>
+</div>

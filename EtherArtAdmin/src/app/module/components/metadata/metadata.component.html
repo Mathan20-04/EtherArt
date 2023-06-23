@@ -1,0 +1,27 @@
+<div class="container">
+    <div  class="table-responsive scroll">
+        <table #scrollMe class="table table-bordered">
+            <thead style="position: sticky;top: 0;z-index: 1;">
+            <tr>
+                <th>Sl.No</th>
+                <th>Metadata Name</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of metadataList ; let i = index">
+                <td>{{i+1}}</td>
+                <td *ngIf="item.action == 'Read'">{{item.meta_key}}</td>
+                <td *ngIf="item.action == 'Edit'">
+                    <input [(ngModel)]="meta_key" type="text" class="form-control" id="meta_key">
+                </td>
+                <td *ngIf="item.action == 'Read'"><span  class="material-icons pointer"  matTooltipPosition="above" mat-raised-button matTooltip="edit" (click)="actionClicked(item)">edit_note</span></td>
+                <td *ngIf="item.action != 'Read'"><span *ngIf="meta_key != ''" class="material-icons pointer"  matTooltipPosition="above" mat-raised-button matTooltip="save" (click)="save(item)">save</span></td>
+                <td *ngIf="item.action == 'Read'"><span class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="delete"  (click)="delete(item,i)">delete</span></td>
+                <td *ngIf="item.action != 'Read'"><span class="material-icons pointer" matTooltipPosition="above" mat-raised-button matTooltip="cancel" (click)="cancel(item,i)">cancel</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="material-icons floating-btn" matTooltipPosition="above" mat-raised-button matTooltip="add new metadata"(click)="newRow()">add</button>
+</div>

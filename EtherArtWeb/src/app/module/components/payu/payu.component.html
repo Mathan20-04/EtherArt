@@ -1,0 +1,143 @@
+<div class="row marginZero">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-4 col-md-4 col-lg-4 col-xd-12">
+    <div class="card">
+      <div class="card-head">
+        <h4 class="leftSide titleName" mat-raised-button matTooltip="Item Id" matTooltipPosition="above">{{itemid}}</h4>
+        <h4 class="rightSide titleName"></h4>
+      </div>
+      <div class="imagecontainer">
+        <img *ngIf="!isMob" [src]="url" alt="EtherArt" class="imgCart">
+        <img *ngIf="isMob" [src]="url" alt="EtherArt" class="mobImage">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 col-lg-4 col-md-4 col-xs-12"><br>
+    <div class="content">
+      <div class="row marginZero">
+        <div class="">
+          <div *ngIf="url!='assets/mystery.png'" class="form-group">
+            <div class="row">
+              <label class="leftSide" for="productInfo">Item #</label>
+              <span class="rightSide">
+                 <input [(ngModel)]="itemid" class="form-control" id="productInfo" name="productinfo"
+                        readonly type="text">
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <label class="leftSide" for="totalamount" mat-raised-button matTooltip="Include Tax where applicable"
+                     matTooltipPosition="above">Total Amount in INR<sup>?</sup></label>
+              <span class="rightSide">
+                 <input [(ngModel)]="itemPrice" class="form-control" id="totalamount" name="totalamount"
+                        readonly type="text">
+              </span>
+            </div>
+          </div>
+          <br>
+          <p *ngIf="checkOutForm.currency=='USD'">You are Paying USD equivalent to INR {{itemPrice}} at the Current Exchange Rate.</p>
+          <p *ngIf="checkOutForm.currency=='INR'">You are Paying INR {{itemPrice}}. Amount is rounded off to nearest INR</p>
+          <!-- <form ngNoForm action="https://www.swipez.in/xway/secure" name="frmTransaction" id="frmTransaction" method="POST">
+          <form ngNoForm action="https://h7sak8am43.swipez.in/xway/secure" name="frmTransaction" id="frmTransaction" method="POST">
+            <div [hidden]="true" class="form-group">
+              <label for="account_id">account_id:</label>
+              <input [(ngModel)]="formData.account_id" class="form-control" id="account_id" name="account_id"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="return_url">return_url:</label>
+              <input [(ngModel)]="formData.return_url" class="form-control" id="return_url" name="return_url"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="reference_no">reference_no:</label>
+              <input [(ngModel)]="formData.reference_no" class="form-control" id="reference_no" name="reference_no"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="amount">amount:</label>
+              <input [(ngModel)]="formData.amount" class="form-control" id="amount" name="amount" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="description">description:</label>
+              <input [(ngModel)]="formData.description" class="form-control" id="description" name="description"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="description">description:</label>
+              <input [(ngModel)]="formData.description" class="form-control" id="description" name="description"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="name">name:</label>
+              <input [(ngModel)]="formData.name" class="form-control" id="name" name="name" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="phone">phone:</label>
+              <input [(ngModel)]="formData.phone" class="form-control" id="phone" name="phone" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="email">email:</label>
+              <input [(ngModel)]="formData.email" class="form-control" id="email" name="email" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="address">address:</label>
+              <input [(ngModel)]="formData.address" class="form-control" id="address" name="address" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="city">city:</label>
+              <input [(ngModel)]="formData.city" class="form-control" id="city" name="city" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="state">state:</label>
+              <input [(ngModel)]="formData.state" class="form-control" id="state" name="state" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="postal_code">postal_code:</label>
+              <input [(ngModel)]="formData.postal_code" class="form-control" id="postal_code" name="postal_code"
+                     type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf1">udf1:</label>
+              <input [(ngModel)]="formData.udf1" class="form-control" id="udf1" name="udf1" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf2">udf2:</label>
+              <input [(ngModel)]="formData.udf2" class="form-control" id="udf2" name="udf2" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf3">udf3:</label>
+              <input [(ngModel)]="formData.udf3" class="form-control" id="udf3" name="udf3" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf4">udf4:</label>
+              <input [(ngModel)]="formData.udf4" class="form-control" id="udf4" name="udf4" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf5">udf5:</label>
+              <input [(ngModel)]="formData.udf5" class="form-control" id="udf5" name="udf5" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="udf5">udf5:</label>
+              <input [(ngModel)]="formData.udf5" class="form-control" id="udf5" name="udf5" type="text">
+            </div>
+            <div [hidden]="true" class="form-group">
+              <label for="secure_hash">secure_hash:</label>
+              <input [(ngModel)]="formData.secure_hash" class="form-control" id="secure_hash" name="secure_hash"
+                     type="text">
+            </div>
+            <p *ngIf="isMob"><br></p>
+          </form> -->
+          <form ngNoForm [action]= "data.draftOrder.payment_link" name="frmTransaction" id="frmTransaction" method="POST">
+            <button #btn *ngIf="isINR" class="btn rightPos" id="btnINR" type="submit">Pay in INR </button>
+            <!-- <button #btn (click)="openCF()" *ngIf="isINR" class="btn rightPos" id="btnINR" >Pay in INR </button> -->
+          <button (click)="openStripe()" *ngIf="!isINR" class="btn rightPos" id="btnUSD" type="button">Pay in USD </button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2"></div>
+</div>

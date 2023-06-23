@@ -1,0 +1,76 @@
+<div *ngIf="!isIn">
+  <form action="index.html" method="post">
+    <h3 *ngIf="showLogin" class="alignCenter">Login <br><br></h3>
+    <h3 *ngIf="showForgot || showVerify" class="alignCenter">Forgot Password<br><br></h3>
+    <form #f="ngForm" *ngIf="showPhone || showLogin" [formGroup]="phoneForm">
+      <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [maxLength]="maxLength"
+        [numberFormat]="PhoneNumberFormat.National"
+        [phoneValidation]="true"
+        [preferredCountries]="preferredCountries"
+        [searchCountryField]="[
+      SearchCountryField.Iso2,
+      SearchCountryField.Name
+    ]"
+        [searchCountryFlag]="true"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [separateDialCode]="separateDialCode"
+        formControlName="phone"
+        name="phone"
+      >
+      </ngx-intl-tel-input>
+    </form>
+    <br>
+    <div *ngIf="showLogin" class="form-group">
+      <input [(ngModel)]="input.password" autocomplete="current-password" class="form-control profileText" id="pwd"
+             name="pwd" placeholder="Password" style="width:310px;margin-bottom: 7px;height: 44px;"
+             type="password">
+      <a (click)="forgot()" class="linkText signLink" >forgot password?</a>
+    </div>
+    <div *ngIf="showLogin" class="form-group alignCenter">
+      <button (click)="login()" [disabled]="signInBtnDisable" class="btn signbtn"><i *ngIf="signInBtnDisable"
+                                                                                       class="fa fa-spinner fa-spin"></i>
+        Sign In
+      </button>
+    </div>
+    <div *ngIf="showLogin" class="alignCenter">
+      <p (click)="showSignUp()" class="signLeft">Don't have Account? <a class="linkText signLink" >SignUp</a>
+      </p>
+    </div>
+    <div *ngIf="showForgot" class="form-group" style="padding-bottom: 64px"><br>
+      <button (click)="sendOTP()" [disabled]="sendOTPBtnDisable" class="btn signRight signbtn"><i *ngIf="sendOTPBtnDisable"
+                                                                                          class="fa fa-spinner fa-spin"></i>
+        Send OTP
+      </button>
+      <button (click)="makeLoginVisible()" class="btn btn-default cancelBtn signLeft">Cancel</button>
+    </div>
+    <div *ngIf="showVerify" class="form-group">
+      <input [(ngModel)]="otp" class="form-control" id="pwd" name="otp" placeholder="OTP" style="height: 44px;"><br>
+      <button (click)="verifyCancel()" class="btn btn-default cancelBtn signLeft">Cancel</button>
+      <button (click)="verifyOTP()" [disabled]="verifyOTPBtnDisable" style="background-color: black;color: white;" class="btn rightPos"><i *ngIf="verifyOTPBtnDisable"
+                                                                                             class="fa fa-spinner fa-spin"></i>
+        Verify
+      </button>
+      <div  class="form-group" class="alignCenter">
+        <br>
+        <button class="btn btn-link" (click)="sendOTP()" [disabled]="enable"  style="color:white ; border:none;text-decoration: none">Resend OTP</button>
+      </div>
+    </div>
+    <div *ngIf="showReset" class="form-group">
+      <h2 class="alignCenter">Reset Password</h2><br><br>
+      <input [(ngModel)]="fpwd" class="form-control" id="pwd" name="pwd" placeholder="enter password" style="height: 44px;"
+             type="password"><br>
+      <input [(ngModel)]="frpwd" class="form-control" id="rpwd" name="rpwd" placeholder="re-enter password" style="height: 44px;"
+             type="password"><br>
+      <button (click)="verifyCancel()" class="btn btn-default cancelBtn signLeft">Cancel</button>
+      <button (click)="resetPWD()" [disabled]="resetBtnDisable" class="btn  rightPos signbtn"><i *ngIf="resetBtnDisable"
+                                                                                         class="fa fa-spinner fa-spin"></i>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

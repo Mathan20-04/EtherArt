@@ -1,0 +1,162 @@
+<div class="row">
+  <div>
+    <p class="leftSide" style="font-weight: 500;font-size: 20px;">Add Payment Method</p>
+  </div>
+  <hr>
+  <div *ngIf="!isIN" class="form-group form-inline">
+    <label >Please tell us where you want to transfer the money?</label><br>
+    <div style="padding: 10px">
+      <label for="upi">Select Country</label><br>
+      <select (change)="onCodeChange($event.target.value)" [(ngModel)]="payMethod" class="form-control profileText"
+              id="payment">
+        <option *ngFor="let code of codes; let i = index" code value="{{code.code}}">
+          {{code.name}}
+        </option>
+      </select>
+    </div>
+    <div style="padding: 10px">
+      <label for="upi">Your email</label><br>
+      <input [(ngModel)]="email" class="form-control" id="email" type="text">
+    </div>
+    <div>
+      <div>
+        <p class="leftPos"></p>
+        <button (click)="addStripe()" class="btn rightSide"><i *ngIf="add" class="fa fa-spinner fa-spin"></i>
+          Add
+        </button>
+        <button (click)="cancel()" class="btn btn-default rightPos goback">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isIN" class="form-group form-inline">
+    <div style="padding: 10px">
+      <label for="payment">Choose Payment Option</label><br>
+      <select (change)="onPaymethodChange($event.target.value)" [(ngModel)]="payMethod" class="form-control profileText"
+              id="payment">
+        <option *ngFor="let option of paymentOption; let i = index" option value="{{option}}">
+          {{option}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="payMethod == 'UPI'" style="padding: 10px">
+    <label class="col-form-label"><img alt="" height="30px" src="assets/upi.svg" width="30px">
+      UPI </label>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="upi" class="required-field">Enter your UPI Id</label>
+          <input [(ngModel)]="paymentMethod.upiId" class="form-control" id="upi" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="reupi" class="required-field">Re-Enter your UPI Id</label>
+          <input [(ngModel)]="paymentMethod.reupiId" class="form-control" id="reupi" type="text">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <p class="leftPos"></p>
+        <button (click)="addUPIPaymentMethod()" class="btn rightSide"><i *ngIf="add" class="fa fa-spinner fa-spin"></i>
+          Add
+        </button>
+        <button (click)="cancel()" class="btn btn-default rightPos goback">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="payMethod == 'NetBanking'" style="padding: 10px">
+    <label class="col-form-label"><img alt="" height="30px" src="assets/internet-banking.svg" width="30px"> Net Banking
+    </label>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="bank" class="required-field">Select Bank</label>
+          <select (change)="onChangeBank($event.target.value)" [(ngModel)]="paymentMethod.bankId" class="form-control profileText"
+                  id="bank">
+            <option *ngFor="let bank of bankList;" value="{{bank.bank_id}}">{{bank.bank_name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="name" class="required-field">Account Holder Name</label>
+          <input [(ngModel)]="paymentMethod.accHolderName" class="form-control" id="name" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group" >
+          <label for="accno" class="required-field">Account Number</label>
+          <input [(ngModel)]="paymentMethod.accNum" class="form-control" id="accno" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="reaccno" class="required-field">Re-Enter Account Number</label>
+          <input [(ngModel)]="paymentMethod.reAccNum" class="form-control" id="reaccno" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="ifsc" class="required-field">IFSC Code</label>
+          <input [(ngModel)]="paymentMethod.ifscCode" class="form-control" id="ifsc" type="text">
+        </div>
+      </div>
+    </div>
+    <p class="leftPos"></p>
+    <div>
+      <p class="leftPos"></p>
+      <button (click)=" addNetBankingPaymentMethod()" class="btn rightSide"><i *ngIf="add"
+                                                                               class="fa fa-spinner fa-spin"></i> Add
+      </button>
+      <button (click)="cancel()" class="btn btn-default rightPos goback">Cancel</button>
+    </div>
+  </div>
+  <div *ngIf="payMethod == 'Credit/Debit'" style="padding: 10px">
+    <label class="col-form-label"><img alt="" height="30px" src="assets/credit-card-svgrepo-com.svg"
+                                       width="30px"> Credit / Debit Card</label>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="owner">Card Type</label>
+          <input [(ngModel)]="paymentMethod.cardType" class="form-control" id="owner" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="card">Card Number</label>
+          <input [(ngModel)]="paymentMethod.cardNum" class="form-control"
+                 id="card" placeholder="xxxx xxxx xxxx xxxx" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="re-card">Re-Enter Card Number</label>
+          <input [(ngModel)]="paymentMethod.reCardNum" class="form-control"
+                 id="re-card" placeholder="xxxx xxxx xxxx xxxx" type="text">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="expire">Expires On</label>
+          <input [(ngModel)]="paymentMethod.expiresOn" class="form-control" id="expire" placeholder="mm/yy" type="text">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <p class="leftPos"></p>
+        <button (click)="addCardPaymentMethod()" class="btn rightSide"><i *ngIf="add" class="fa fa-spinner fa-spin"></i>
+          Add
+        </button>
+        <button (click)="cancel()" class="btn btn-default rightPos goback">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>
+

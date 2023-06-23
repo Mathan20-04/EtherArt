@@ -1,0 +1,14 @@
+<div *ngIf="isloaded">
+    <div class="col-md-4">
+      <h4>Collections</h4>
+      <app-listcollection [list]="collectionList" (itemSelectedEvent)="selectedCollectionItem($event)"></app-listcollection>
+    </div>
+    <div  class="col-md-4">
+      <h4>Parts</h4>
+      <app-listpart  *ngIf="imageId != -1"[list]="partList" (partSelectedEvent)="selectedPartItem($event)" ></app-listpart>
+    </div>
+    <div class="col-md-4">
+      <h4>Variants</h4>
+      <app-listvariant [list]="variantList"></app-listvariant>
+    </div>
+  </div>

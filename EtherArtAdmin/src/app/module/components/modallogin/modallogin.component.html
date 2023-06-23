@@ -1,0 +1,49 @@
+<div *ngIf="!isIn">
+  <form class="box" action="index.html" method="post">
+    <h2 *ngIf="showLogin" class="modalLogin">Login </h2><br>
+    <h2 *ngIf="showForgot" class="modalLogin">Forgot Password</h2><br>
+    <form #f="ngForm" *ngIf="showPhone"  [formGroup]="phoneForm">
+      <ngx-intl-tel-input
+        [cssClass]="'custom'"
+        [preferredCountries]="preferredCountries"
+        [enableAutoCountrySelect]="true"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+      SearchCountryField.Iso2,
+      SearchCountryField.Name
+    ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [maxLength]="maxLength"
+        [phoneValidation]="true"
+        [separateDialCode]="separateDialCode"
+        [numberFormat]="PhoneNumberFormat.National"
+        name="phone"
+        formControlName="phone"
+      >
+      </ngx-intl-tel-input>
+    </form>
+    <div *ngIf="showLogin" class="form-group">
+      <input type="password" class="form-control profileText" id="pwd" [(ngModel)]="input.password" style="width:311px;height: 44px;" name="pwd" autocomplete="current-password" placeholder="Password">
+      <a (click)="forgot()" class="linkText">forgot password?</a>
+    </div>
+    <div *ngIf="showLogin" class="form-group">
+      <button class="btn btn-info signRight" (click)="login()">Sign In</button>
+      <button class="btn btn-danger signLeft" (click)="closeModal()">Cancel</button>
+    </div>
+    <div *ngIf="showForgot" class="form-group"><br>
+      <button class="btn btn-info rightPos" (click)="sendOTP()">Send OTP</button>
+      <button class="btn btn-info leftPos" (click)="makeLoginVisible()">Back To Login</button>
+    </div>
+    <div *ngIf="showVerify" class="form-group">
+      <input class="form-control" id="pwd" [(ngModel)]="otp" name="otp"  placeholder="OTP"><br>
+      <button class="btn btn-info rightPos" (click)="verifyOTP()">Verify</button>
+    </div>
+    <div *ngIf="showReset" class="form-group">
+      <input class="form-control" id="pwd" [(ngModel)]="fpwd" name="pwd"  placeholder="enter password"><br>
+      <input class="form-control" id="rpwd" [(ngModel)]="frpwd" name="rpwd"  placeholder="re-enter password"><br>
+      <button class="btn btn-info  rightPos" (click)="resetPWD()">Submit</button>
+    </div>
+  </form>
+</div>

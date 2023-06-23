@@ -1,0 +1,82 @@
+<div  class="row" style="margin: 0;">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-4">
+    <p class="leftSide" style="margin-left: 20px;font-size: 25px">Issue Type</p>
+    <form class="form-group">
+      <fieldset id="group">
+        <div *ngFor="let type of ticketTypes;let i = index" >
+          <label class="col-form-label" for="{{i}}" class="helpCenterList" [ngStyle]="{'background-color':(type.ticket_type_id == ticketTypeId )?  '#00a2ed':'' }"> <input type="radio" id="{{i}}" (change)="changeType(type,$event)"  name="group"> <span class="enable pointer">{{type.description}}</span></label>
+        </div>
+      </fieldset>
+    </form>
+    <div *ngIf="imageUrl != undefined && !isMob"  style="text-align: center">
+      <img [src]="imageUrl" alt="EtherArt" width="150px" height="150px;">
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+        <div  class="form-group" style="display: inline-flex">
+          <div>
+            <label class="col-form-label required-field" for="email">Your phone number</label>
+            <form #f="ngForm" [formGroup]="phoneForm" >
+              <ngx-intl-tel-input
+                [cssClass]="'custom'"
+                [preferredCountries]="preferredCountries"
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2,SearchCountryField.Name]"
+                [selectFirstCountry]="false"
+                [selectedCountryISO]="countryiso"
+                [maxLength]="maxLength"
+                [phoneValidation]="true"
+                [separateDialCode]="separateDialCode"
+                [numberFormat]="PhoneNumberFormat.National"
+                [customPlaceholder]="phoneNum"
+                name="phone"
+                formControlName="phone" [(ngModel)]="phoneNum">
+              </ngx-intl-tel-input>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+        <div class="form-group">
+          <label class="col-form-label required-field" for="email">Your email address</label>
+          <input type="email" class="form-control " id="email" placeholder="email" [(ngModel)]="email" style="width: 311px;height: 44px;" required>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label required-field" for="subType">I have an issue with</label>
+      <select (click)="alertSelectIssue()"  class="form-control" id="subType" [(ngModel)]="ticketSubTypeId" style="height: 44px" required>
+        <option *ngFor="let st of subTypes" value="{{st.sub_ticket_type_id}}">{{st.ticket_type}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label required-field" for="subject">Subject</label>
+      <input type="text" class="form-control " [(ngModel)]="sub" id="subject" placeholder="subject"  style="height: 44px" required>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label required-field" for="description">Description</label>
+      <textarea class="form-control" [(ngModel)]="desc" name="description" id="description" cols="30" rows="4" placeholder="How can we help you?" required></textarea>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label" for="Attachments">Attachments(optional)</label>
+      <input type="file" class="form-control" style="height: 40px;" id="Attachments" (change)="upload($event)">
+    </div>
+    <div *ngIf="imageUrl != undefined && isMob"  style="text-align: center">
+      <img [src]="imageUrl" alt="EtherArt" width="150px" height="150px;">
+    </div>
+    <div>
+      <span class="leftPos"></span>
+      <span class="rightPos">
+        <button class="btn btn-ether btn-paynow" [disabled]="submitLoads" (click)="submitTicket()" >
+          <i *ngIf="submitLoads" class="fa fa-spinner fa-spin"></i> Submit
+        </button>
+      </span>
+      <button (click)="goback()" class="btn btn-default rightPos goback">Cancel</button>
+    </div>
+  </div>
+</div><br>

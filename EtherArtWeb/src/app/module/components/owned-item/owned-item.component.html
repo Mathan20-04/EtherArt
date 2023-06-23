@@ -1,0 +1,60 @@
+<div class="row marginZero">
+  <div class="">
+    <div class="card">
+      <div class="card-head">
+        <h4 class="leftSide titleName">#{{item.detail_id}}</h4>
+        <img   class="leftSide tagIcon" [src]="iconsrc" width="60px" height="60px">
+        <h4 class="rightSide titleName">Purchased on: {{showDateYYYY(item.added_on,'-')}}</h4>
+      </div>
+      <div class="imagecontainer">
+        <img [src]="item.url+'&s=700'" alt="EtherArt" width="100%" class="imgcollection"  (click)="showDetail()">
+      </div>
+      <div class="ownedItem">
+        <div>
+          <h3 class="leftSide titleName">Bid Range</h3>
+          <h3 class="rightSide titleName"><span>{{bidlow}}</span>-<span>{{bidhigh}}</span></h3>
+        </div>
+        <div>
+          <h4 class="leftSide titleName">Bids : {{numBids}}</h4>
+        </div>
+        <div class="tablecontainer">
+          <div class="table-responsive ownedTable">
+            <table class="table table-bordered">
+              <thead style="position: sticky;top: 0;z-index: 1;">
+              <tr>
+                <th>Date</th>
+                <th>Bider</th>
+                <th>Bid Price</th>
+                <!-- <th>Action</th> -->
+              </tr>
+              </thead>
+              <tbody *ngIf="item.bids != null">
+              <tr *ngFor="let bid of item.bids ;  let i = index  ">
+                <td>{{showDateYYYY(bid.created_on,'-')}}</td>
+                <td>{{bid.owner_id.toString(16)}}</td>
+                <td>Rs. {{bid.bid_price}}</td>
+                <!-- <td>
+                  <a *ngIf="bid.showAccept == 1" (click)="Accept(bid.bid_price)" class="rightSide buy">Accept</a>
+                </td> -->
+              </tr>
+              </tbody>
+              <tbody *ngIf="item.bids == null">
+              <tr>
+                <td>No Bid yet!</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div *ngIf="!onSale">
+          <h3 class="leftSide titleName">Purchased Price: <span>{{item.purchased_price}}</span></h3>
+          <h3 class="rightSide titleName"><a *ngIf="!hideAsk" (click)="openListForSale()">Put it On Sale</a></h3>
+        </div>
+        <div *ngIf="onSale">
+          <h3 class="leftSide titleName">Sale Ask Price : <span>{{askPrice}}</span> on {{askDate}}</h3>
+          <h3 class="rightSide titleName"><a  (click)="pause()">Pause</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

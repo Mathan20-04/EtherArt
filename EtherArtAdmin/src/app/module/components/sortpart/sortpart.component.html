@@ -1,0 +1,43 @@
+<div class="col-md-4">
+    <div class="row collection" style="height: 85vh;position:relative;">
+        <div style="max-height:100%;overflow-y:auto;">
+            <div class="card" [ngStyle]="{'border': (selectedImageId==item.image_id) ? '2px solid #00a2ed' : ''}" *ngFor="let item of collectionList ;  let i = index" style="margin: 20px;">
+                <div class="card-head">
+                    <h6 class="leftSide titleName"   matTooltipPosition="above" mat-raised-button matTooltip="collection name">{{item.title}}</h6>
+                    <h6 class="rightSide titleName"   matTooltipPosition="above" mat-raised-button matTooltip="created on">{{item.created_date}}</h6>
+                </div>
+                <div class="imagecontainer">
+                        <img [src]="item.url+'&s=700'" alt="EtherArt" style="width: 100%;" (click)="onClickImage(item,item.image_id)">
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="leftSide titleName">Parts</p>
+                        <p class="rightSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="num of parts" >{{item.numparts}}</p>
+                    </div>
+                    <div>
+                        <p class="leftSide titleName"># Collection</p>
+                        <p class="rightSide titleName"  matTooltipPosition="above" mat-raised-button matTooltip="num of collections" >{{item.total_collection}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-8" >
+    <div class="row collection" style="height: 85vh;position:relative;">
+        <div style="max-height:100%;overflow-y:auto;">
+            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of showPartList ; let i = index"   cdkDrag>
+                    <h4>{{i+1}}</h4>
+                    <div>
+                       <h5>{{item.title}}</h5>
+                    </div>
+                    <img  [src]="item.url+'&s=700'" [alt]="item.title" style="height: 40px; width: 40px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button [disabled]="!canSort" class="material-icons floating-btn"  matTooltipPosition="above" mat-raised-button matTooltip="save" (click)="updatePartOrder()">save</button>

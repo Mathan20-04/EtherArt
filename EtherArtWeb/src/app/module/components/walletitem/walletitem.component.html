@@ -1,0 +1,60 @@
+<div class="row collection">
+
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <h6 class="leftSide titleName">{{item.date}}</h6>
+        <img class="leftSide tagIcon" [src]="iconSrc" width="60px" height="60px">
+        <h6 class="rightSide titleName">#{{item.name}}</h6>
+      </div>
+    </div>
+    <div class="imagecontainer">
+      <img [src]="item.image" alt="EtherArt" style="width: 100%">
+    </div>
+    <div class="walletitem-body">
+      <div *ngIf="item.trans== 'TRANSSIGNUPBONUS'">
+        <div>
+          <h6 class="leftSide titleName">Referral Reward</h6>
+          <h6 class="rightSide titleName">{{item.joinReward}}</h6>
+        </div>
+
+        <div>
+          <h6 class="leftSide titleName">Balance</h6>
+          <h6 class="rightSide titleName">{{item.sbalance}}</h6>
+        </div>
+      </div>
+      <div *ngIf="item.trans== 'TRANSUFT'">
+        <div>
+          <h6 class="leftSide titleName">Purchase Reward</h6>
+          <h6 class="rightSide titleName">{{item.purchaseReward}}</h6>
+        </div>
+
+        <div>
+          <h6 class="leftSide titleName">Balance</h6>
+          <h6 class="rightSide titleName">{{item.sbalance}}</h6>
+        </div>
+      </div>
+      <div *ngIf="item.trans== 'TRANSPURCHASE'">
+        <div>
+          <h6 class="leftSide titleName">Reward Redeemed</h6>
+          <h6 class="rightSide titleName">{{item.redeemed}}</h6>
+        </div>
+        <div>
+          <h6 class="leftSide titleName">Balance</h6>
+          <h6 class="rightSide titleName">{{item.sbalance}}</h6>
+        </div>
+      </div>
+      <div *ngIf="item.trans== 'TRANSSALE'">
+        <div>
+          <h6 class="leftSide titleName">Cash Earned</h6>
+          <h6 class="rightSide titleName">{{item.cashEarned}}</h6>
+        </div>
+
+        <div>
+          <h6 class="leftSide titleName">Balance</h6>
+          <h6 class="rightSide titleName">{{item.hbalance}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

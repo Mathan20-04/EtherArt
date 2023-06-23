@@ -1,0 +1,35 @@
+<div class="row" style="margin: 0">
+  <div>
+    <p class="leftSide" style="margin-left: 20px;font-size: 25px">My Tickets</p>
+    <button class="btn rightSide" style="margin-top: 5px;margin-right: 20px" (click)="openHelpCenter()">Create New Ticket</button>
+  </div>
+  <div style="margin-left: 20px;margin-right: 20px;">
+    <div  class="table-responsive myticketTable">
+      <table #scrollMe class="table ">
+        <thead style="position: sticky;top: 0;z-index: 1;">
+        <tr>
+          <th>Ticket ID</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Subject</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="ticketList == null">
+          <td>No Ticket</td>
+        </tr>
+        <tr *ngFor="let ticket of ticketList ;let i = index" class="pointer ticket" (click)="openViewTicket(ticket)">
+          <td>{{ticket.ticket_id}}</td>
+          <td>{{showDateYYYY(ticket.created_on,'-')}}</td>
+          <td>{{showTicketType(ticket)}}</td>
+          <td>{{ticket.ticket_title}}</td>
+          <td >{{ticket.status}}</td>
+          <td class="pointer alignCenter"><a (click)="openAddComment(ticket)"><span class="material-icons inline-icon">turn_left</span>Add comment</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div>
+  <p class="leftPos"></p>
+  <span (click)="dialogClose()" class="material-icons icon rightPos" matTooltipPosition="above" mat-raised-button matTooltip="Close">close</span>
+</div>
+<div>
+  <p class="leftSide" style="font-size: 20px">Ticket - {{ticket.ticket_id}} &nbsp; {{ticket.ticket_title}}</p>
+</div>
+<div class="row">
+  <div style="height: 60vh;position:relative; ">
+    <div #scrollMe style="max-height:100%;overflow-y:auto; overflow-x: hidden">
+      <div *ngFor="let activity of Activities">
+        <div class="row" *ngIf="activity.source == 'CONSUMER'">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <p class="messageTime" *ngIf="activity.created_by == null">{{activity.created_by}} on
+              {{activity.created_on}}</p>
+            <p class="messageTime" *ngIf="activity.created_by != null">you messaged on
+              {{activity.created_on}}</p>
+            <div class="ticketSendMessage">
+              <p class="ticketSenMess">
+                {{activity.comments}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="activity.source == 'ADMIN'">
+          <div class="col-sm-9">
+            <p class="messageTime" *ngIf="activity.created_by == null">{{activity.created_by}} on
+              {{activity.created_on}}</p>
+            <p class="messageTime" *ngIf="activity.created_by != null && activity.source == 'ADMIN'">{{activity.created_by.toString(16)}} on
+              {{activity.created_on}}</p>
+            <div class="ticketReceiveMessage">
+              <p class="ticketRecMes">
+                {{activity.comments}}
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br>
+<div class="row" class="marginZero">
+  <div class="form-group">
+    <textarea class="form-control" [(ngModel)]="comments" name="description" id="description" rows="3"
+              placeholder="How can we help you?"></textarea>
+  </div>
+</div>
+<div>
+  <p class="leftPos"></p>
+  <button class="btn rightPos" (click)="addTicketActivity()" [disabled]="comments == ''">Comment</button>
+  <button class="btn btn-default rightPos goback" (click)="backToTicketList()">Exit</button>
+</div>

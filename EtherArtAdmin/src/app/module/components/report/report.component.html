@@ -1,0 +1,79 @@
+<div class="scrollList">
+<div class="container ">
+  <h4>List of Users</h4>
+  <div class="table-responsive scroll-300">
+    <table class=" table table-bordered ">
+      <thead style="position: sticky;top: 0;z-index: 1;">
+      <tr>
+        <th>Sl No</th>
+        <th>Mobile</th>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>City</th>
+        <th>Date Joined</th>
+        <th># Referrals</th>
+        <th>Referal Reward</th>
+        <th># Tribe Purchases</th>
+        <th>Tribe Purchase Reward</th>
+        <th>Total Reward</th>
+        <th>Rewards Used</th>
+        <th>Balance</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr (click)="clicked(user)" *ngFor="let user of userList;let i = index">
+        <td>{{i+1}}</td>
+        <td>{{user.mobile}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+
+        <td>{{user.city}}</td>
+        <td>{{user.created_on}}</td>
+        <td>{{user.num_referral}}</td>
+        <td>{{user.referral_bonus}}</td>
+        <td>{{user.tribe_purchases}}</td>
+        <td>{{user.tribe_reward}}</td>
+        <td>{{user.total_rewards}}</td>
+        <td>{{user.rewards_used}}</td>
+        <td>{{user.balance}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+<br><br>
+
+<div class="scrollList">
+  <div class="container">
+    <h4>List of Referrals</h4>
+    <div class="table-responsive scroll-300">
+      <table  class="table table-bordered">
+        <thead style="position: sticky;top: 0;z-index: 1; ">
+        <tr>
+          <th>Sl No</th>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last name</th>
+          <th>Mobile</th>
+          <th>Date Joined</th>
+          <th>Referals</th>
+          <th>Total Reward</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of transList;let i = index">
+          <td>{{i+1}}</td>
+          <td>{{user.user_id}}</td>
+          <td>{{user.first_name}}</td>
+          <td>{{user.last_name}}</td>
+          <td>{{user.mobile}}</td>
+          <td>{{user.created_on}}</td>
+          <td>{{user.num_referral}}</td>
+          <td>{{user.total}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<h2><span class="material-icons inline-icon" style="font-size: 40px;">gavel</span> Bid</h2>
+<div class="row collection">
+  <div *ngFor="let item of data" class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+    <div class="card">
+      <div class="card-head">
+        <h4 class="leftSide titleName">#{{item.item_id}}</h4>
+        <img class="leftSide tagIcon" [src]="item.item.statusurl" width="60px" height="60px">
+        <h4 class="rightSide titleName">Rs.{{item.bid_price}} on {{showDateYYYY(item.created_on,'-')}}</h4>
+      </div>
+      <div class="imagecontainer">
+        <img [src]="item.item.url+'&s=700'" alt="EtherArt" width="100%" style="height:300px;" class="imgcollection">
+      </div>
+      <div class="ownedItem">
+        <div>
+          <p class="leftSide titleName">Rarity</p>
+          <p class="rightSide titleName">{{item.item.rarity_percent}}%</p>
+        </div>
+        <div>
+          <h3 class="leftSide titleName">Bid Range</h3>
+          <h3 class="rightSide titleName"><span>{{bidlow}}</span>-<span>{{bidhigh}}</span></h3>
+        </div>
+        <div class="tablecontainer">
+          <div class="table-responsive ownedTable">
+            <table class="table table-bordered">
+              <thead style="position: sticky;top: 0;z-index: 1;">
+              <tr>
+                <th>Date</th>
+                <th>Bider</th>
+                <th>Bid Price</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="item.item.bids != null">
+              <tr *ngFor="let bid of item.item.bids ;  let i = index  ">
+                <td>{{showDateYYYY(bid.created_on,'-')}}</td>
+                <td>{{bid.owner_id.toString(16)}}</td>
+                <td>Rs. {{bid.bid_price}}</td>
+              </tr>
+              </tbody>
+              <tbody *ngIf="item.item.bids == null">
+              <tr>
+                <td>No Bid yet!</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

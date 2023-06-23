@@ -1,0 +1,48 @@
+
+<div class="row marginZero">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div #screen  name="card" id="download-card" class="card">
+      <div class="card-head">
+        <h4 class="leftSide titleName" matTooltipPosition="above" mat-raised-button matTooltip="Item Id">#{{item.detail_id}}</h4>
+        <h6 class="rightSide titleName"></h6>
+      </div>
+      <div class="imagecontainer">
+        <img [src]="item.url+'&s=700'" alt="EtherArt" class="mobImage">
+      </div>
+      <div class="image-card-body">
+        <div class="row marginZero">
+          <p class="leftSide">{{collectionName}}</p>
+          <p class="rightSide">Properties</p>
+        </div>
+        <div class="row marginZero">
+          <p class="leftSide">#{{item.detail_id}}</p>
+          <span class="rightSide">
+            <ul *ngFor="let trait of traitItem">
+              <li class="rightPos" style="font-size: 9px;">
+                {{trait.showTitle}}<br>
+              </li>
+            </ul>
+          </span>
+        </div>
+        <div  class="row marginZero">
+          <p class="leftSide"><span class="material-icons">coronavirus</span>
+          </p>
+          <p class="leftSide"><span class="material-icons">vaccines</span>
+          </p>
+          <p class="leftSide"><span class="material-icons">medication</span>
+          </p>
+          <p class="rightSide"><span class="material-icons"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="true" id="download">
+      <img #canvas/>
+      <a #downloadLink></a>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="btn btn-primary floating-btn" (click)="downloadImage()" class="material-icons floating-btn" mat-raised-button matTooltip="Save" matTooltipPosition="above">save</div>
+  </div>
+</div>

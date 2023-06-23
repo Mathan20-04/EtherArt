@@ -1,0 +1,8 @@
+/*
+  All the external libraries which are added to run this application are listed here.
+*/
+
+npm install crypto-js (v3.1.9-1) ( For encryption )
+ng update @angular/core
+
+npm install stripe-angular @types/stripe-v3 --save

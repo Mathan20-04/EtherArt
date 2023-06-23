@@ -1,0 +1,109 @@
+<div>
+    <h4 class="leftPos">Making a Payment of <b>Rs.{{amount}}</b></h4>
+    <span (click)="close()" class="material-icons icon rightPos" mat-raised-button matTooltip="Close"
+          matTooltipPosition="above">close</span>
+</div><br>
+<div class="row marginLR">
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="toName">To Name</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="toName" class="form-control" id="toName" name="toName" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="Mode">Mode</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="mode" class="form-control" id="Mode" name="Mode" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div *ngIf="payoutReq.payment_method.upi_id!=''" class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="upi">UPI</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="upiId" class="form-control" id="upi" name="upi" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div *ngIf="payoutReq.payment_method.account_number!=''" class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="accnt">Account Number</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="accountNumber" class="form-control" id="accnt" name="accnt" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div *ngIf="payoutReq.payment_method.account_number!=''" class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="ifsc">IFSC Code</label>
+            <span class="col-sm-6">
+                <input [ngModel]="ifsc" class="form-control" id="ifsc" name="ifsc" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="amount">Amount</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="amount" class="form-control" id="amount" name="amount" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div [hidden]="true" class="row">
+            <label class="col-sm-6" for="requestid">Request Id</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="requestId" class="form-control" id="requestid" name="status" readonly type="text">
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div [hidden]="true" class="row">
+            <label class="col-sm-6 required-field" for="status">Status</label>
+            <span class="col-sm-6">
+               <select (change)="onPayoutStatusChange($event.target.value)" [(ngModel)]="status" class="form-control profileText"
+                       id="status">
+                   <option *ngFor="let status of payoutStatus; let i = index" option
+                           value="{{status.lookup_code}}">{{status.description}}</option>
+               </select>
+            </span>
+        </div>
+    </div>
+    <div [hidden]="true" class="form-group">
+        <div class="row">
+            <label class="col-sm-6 required-field" for="comments">Comments</label>
+            <span class="col-sm-6">
+                <textarea [(ngModel)]="comments" class="form-control" cols="30" id="comments" name="comments"
+                          rows="4"></textarea>
+            </span>
+        </div>
+    </div>
+    <div [hidden]="true" class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="referenceId">Reference Id</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="referenceId" class="form-control" id="referenceId" name="referenceId" readonly
+                       type="text">
+            </span>
+        </div>
+    </div>
+    <div [hidden]="true" class="form-group">
+        <div class="row">
+            <label class="col-sm-6" for="referenceObj">Reference Object</label>
+            <span class="col-sm-6">
+                <input [(ngModel)]="referenceObject" class="form-control" id="referenceObj" name="referenceObj"
+                       type="text">
+            </span>
+        </div>
+    </div>
+    <div>
+        <p class="leftPos"></p>
+        <button (click)="updatePayoutRequest()" class="btn btn-success rightPos"><i *ngIf="updatePayReq"
+                                                                                    class="fa fa-spinner fa-spin"></i>
+            Update
+        </button>
+    </div>
+</div>

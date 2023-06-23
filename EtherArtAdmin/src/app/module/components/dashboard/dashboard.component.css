@@ -1,0 +1,31 @@
+.logo {
+  margin-right: 10px;
+}
+h2{
+  text-align: center;
+}
+.foot  {
+  background-color: #f1f1f1;
+}
+.login {
+  margin:0px;
+}
+
+.copyright {
+  background-color: rgba(0, 0, 0, 0.2); height: 50px; display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.com {
+  text-decoration:none;
+}
+
+.head {
+  font-size: 40px;
+}
+
+.graph {
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
